@@ -1,5 +1,5 @@
 
-import {paragraphCSS, navCSS, smartCSS, bidCSS, signUpCSS, loginCSS} from '../StyleSheets/HeaderStyleSheet';
+import {navCSS, smartCSS, bidCSS, signUpCSS, loginCSS} from '../StyleSheets/HeaderStyleSheet';
 
 export function Header() {
   
@@ -7,35 +7,39 @@ export function Header() {
 
     <div>
 
-      <nav style={navCSS}>
+      <nav style={navCSS} className='navbar navbar-default'>
 
-        <div className='col-lg-3'>
-          
-          <p> <span style={smartCSS}>Smart</span><span style={bidCSS}>Bid</span></p>
+        <div className='row'>
 
-        </div>
-      
-        <div className='col-lg-6'>
+          <div className='col-lg-3'>
+            
+            <p> <span style={smartCSS}>Smart</span><span style={bidCSS}>Bid</span></p>
 
-            <ul className='nav row'>
+          </div>
+        
+          <div className='col-lg-6'>
 
-                <li className="col-lg-3"><a href="./HomePage.html">Home</a></li>
-                <li className="col-lg-3"><a href="./PublishAuction.html">Publish Auctions</a></li> 
-                <li className="col-lg-3"><a href="./ViewAuction.html">View Auctions</a></li>
-                <li className="col-lg-3"><a href="./CloseAuction.html">Close Auctions</a></li>
+              <ul className='nav row'>
 
-            </ul>
+                  <li className="col-lg-3"><a href="./HomePage.html">Home</a></li>
+                  <li className="col-lg-3"><a href="./PublishAuction.html">Publish Auctions</a></li> 
+                  <li className="col-lg-3"><a href="./ViewAuction.html">View Auctions</a></li>
+                  <li className="col-lg-3"><a href="./CloseAuction.html">Close Auctions</a></li>
 
-        </div>
+              </ul>
 
-        <div className='col-lg-3'>
+          </div>
 
-          <div className='nav row'>
+          <div className='col-lg-3'>
 
-            <div className='col-lg-4'></div>
-            <div className='col-lg-3' style={signUpCSS}><a href="./SignUp.html" style={{color: '0EA5E9'}}>Sign Up</a></div>
-            <div className='col-lg-1'></div>
-            <div className='col-lg-3' style={loginCSS}><a href="./Login.html" style={{color: 'white'}}>Login</a></div>
+            <div className='nav row'>
+
+              <div className='col-lg-4'></div>
+              <div className='col-lg-3' style={signUpCSS}><a href="./SignUp.html" style={{color: '0EA5E9'}}>Sign Up</a></div>
+              <div className='col-lg-1'></div>
+              <div className='col-lg-3' style={loginCSS}><a href="./Login.html" style={{color: 'white'}}>Login</a></div>
+
+            </div>
 
           </div>
 

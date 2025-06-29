@@ -1,16 +1,7 @@
 
-export const paragraphCSS =
-{
-
-  backgroundColor : 'Red',
-  color : 'White'
-
-};
-
 export const navCSS =
 {
 
-  height: '70px',
   justifyContent: 'space-between',
   paddingTop: '16px',
   paddingRight: '80px',
@@ -51,7 +42,7 @@ export const signUpCSS =
 
   paddingTop: '5px',
   paddingBottom: '5px',
-  paddingLeft: '20px',
+  paddingLeft: '14px',
 
   fontFamily: 'Inter',
   fontWeight: '600',
