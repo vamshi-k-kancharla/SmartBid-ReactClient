@@ -5,7 +5,7 @@ export function BiddingStyle() {
   
   return (
 
-    <div>
+    <div style={{paddingLeft:'1%'}}>
 
       <div style={firstDivCSS}>
 
@@ -13,7 +13,6 @@ export function BiddingStyle() {
 
           <div className='col-lg-4'></div>        
           <div style={chooseCSS} className='col-lg-4'> Choose Your Bidding Style </div>
-          <div className='col-lg-4'></div>        
 
         </div>
 
@@ -21,7 +20,6 @@ export function BiddingStyle() {
 
           <div className='col-lg-4'></div>        
           <div style={sellerControlCSS} className='col-lg-4'> Sellers can control their auction experience </div>
-          <div className='col-lg-4'></div>        
 
         </div>
 
@@ -87,8 +85,6 @@ export function BiddingStyle() {
             </div>
 
           </div>
-
-          <div className='col-lg-2'></div>        
 
         </div>
         

@@ -2,9 +2,7 @@
 export const firstDivCSS =
 {
 
-  height: '494px',
-  top: '64px',
-  left: '20px',
+  width: '99%',
   backgroundColor: '#F9FAFB',
 
 };
