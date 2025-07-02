@@ -1,5 +1,6 @@
 
 import {navCSS, smartCSS, bidCSS, signUpCSS, loginCSS} from '../StyleSheets/HeaderStyleSheet';
+import { loadSignUpPage, loadLoginPage } from '../ClientCode/Home';
 
 export function Header() {
   
@@ -35,9 +36,9 @@ export function Header() {
             <div className='nav row'>
 
               <div className='col-lg-4'></div>
-              <div className='col-lg-3' style={signUpCSS}><a href="./SignUp.html" style={{color: '0EA5E9'}}>Sign Up</a></div>
+              <div className='col-lg-3' style={signUpCSS}><a href="#" onClick={loadSignUpPage} style={{color: '0EA5E9'}}>Sign Up</a></div>
               <div className='col-lg-1'></div>
-              <div className='col-lg-3' style={loginCSS}><a href="./Login.html" style={{color: 'white'}}>Login</a></div>
+              <div className='col-lg-3' style={loginCSS}><a href="#" onClick={loadLoginPage} style={{color: 'white'}}>Login</a></div>
 
             </div>
 
@@ -52,3 +53,4 @@ export function Header() {
   );
   
 }
+
