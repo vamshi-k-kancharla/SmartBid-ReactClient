@@ -7,11 +7,15 @@ import { BiddingStyle } from '../Components/BiddingStyle';
 import { Footer } from '../Components/Footer';
 
 import { SignUp } from './SignUp';
-import { Login } from './LogIn';
+import { Login } from './Login';
 
+let container, smartBidRoot : any;
 
-let container = document.getElementById("SmartBidRoot")!;
-let smartBidRoot = createRoot(container);
+if( container == undefined || smartBidRoot == undefined )
+{
+  container = document.getElementById("SmartBidRoot")!;
+  smartBidRoot = createRoot(container);
+}
 
 smartBidRoot.render(
   

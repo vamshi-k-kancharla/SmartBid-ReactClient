@@ -105,7 +105,7 @@ export const formLabelMustCSS =
 export const textInputDivCSS =
 {
 
-  paddingLeft: '15px',
+  paddingLeft: '14px',
   paddingRight: '10px',
 
 }
@@ -114,12 +114,78 @@ export const textInputCSS =
 {
 
   borderRadius: '8px',
-  paddingTop: '12px',
+  paddingTop: '8px',
   paddingRight: '16px',
-  paddingBottom: '12px',
+  paddingBottom: '8px',
   paddingLeft: '16px',
   borderWidth: '1px',
   backgroundColor: '#FCFCFC',
   border: '1px solid #BFBFBF',
+
+}
+
+export const submitButtonCSS =
+{
+
+  opacity: '0.75',
+  borderRadius: '8px',
+  paddingTop: '12px',
+  paddingRight: '32px',
+  paddingBottom: '12px',
+  paddingLeft: '32px',
+  backgroundColor: '#0EA5E9',
+
+  fontFamily: 'Poppins',
+  fontWeight: '500',
+  fontSize: '16px',
+  lineHeight: '24px',
+  letterSpacing: '2%',
+  color: 'white'
+
+}
+
+export const submitButtonDivCSS =
+{
+
+  paddingLeft: '30px',
+  paddingRight: '20px',
+
+}
+
+export const googleButtonCSS =
+{
+
+  opacity: '0.75',
+  borderRadius: '8px',
+  paddingTop: '12px',
+  paddingRight: '32px',
+  paddingBottom: '12px',
+  paddingLeft: '32px',
+  backgroundColor: '#e7e7e4',
+
+  fontFamily: 'Poppins',
+  fontWeight: '500',
+  fontSize: '16px',
+  lineHeight: '24px',
+  letterSpacing: '2%',
+  color: 'blue'
+
+}
+
+export const appleButtonCSS =
+{
+
+  ...googleButtonCSS, color: 'brown'
+
+}
+
+export const loginAnchorCSS =
+{
+
+  fontFamily: 'Poppins',
+  fontWeight: '400',
+  fontSize: '16px',
+  lineHeight: '100%',
+  letterSpacing: '2%',
 
 }
