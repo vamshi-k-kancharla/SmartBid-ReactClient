@@ -28,14 +28,14 @@ export async function sendHttpJsonRequestToSmartBidServerWithCallback(inputQuery
             console.log("Error occured while sending the request = " + xmlHttpRequest.status);
             console.log("Error Text = " + xmlHttpRequest.statusText);
 
-            failureCustomerDataFormSubmission(xmlHttpRequest.statusText);  
+            failureCustomerDataFormSubmission(xmlHttpRequest.responseText);  
         }
     };
 
     xmlHttpRequest.onerror = () => {
 
         console.log("XML http request has encountered an error");
-        failureCustomerDataFormSubmission(xmlHttpRequest.statusText);  
+        failureCustomerDataFormSubmission(xmlHttpRequest.responseText);  
     }
 
     xmlHttpRequest.send(JSON.stringify(inputJsonQueryObject));

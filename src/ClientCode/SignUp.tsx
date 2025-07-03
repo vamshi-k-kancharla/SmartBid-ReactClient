@@ -71,12 +71,16 @@ export async function submitSignUpDetails(event:any)
 function successfulCustomerDataFormSubmission(httpResponseText:string)
 {
   console.log("successfulCustomerDataFormSubmission : " + httpResponseText);
+  alert("Successfully added customer record to the table : " + httpResponseText);
+  
   loadLoginPage();
 }
 
 function failureCustomerDataFormSubmission(httpStatusText:string)
 {
   console.log("failureCustomerDataFormSubmission : " + httpStatusText);
+  alert("Failed to Add Customer Record : " + httpStatusText);
+
   loadLoginPage();
 }
 
