@@ -26,7 +26,7 @@ export const leftPaneCSS =
   borderRadius: '8px',
   
   paddingTop: '220px',
-  paddingBottom: '230px',
+  paddingBottom: '315px',
   paddingLeft: '40px',
   
   backgroundColor: '#4B5563',

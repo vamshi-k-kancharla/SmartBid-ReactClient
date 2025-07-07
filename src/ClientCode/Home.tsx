@@ -8,6 +8,10 @@ import { Footer } from '../Components/Footer';
 
 import { SignUp } from './SignUp';
 import { Login } from './Login';
+import { PublishAsset } from './PublishAsset';
+
+
+// Render the Home Page
 
 let container, smartBidRoot : any;
 
@@ -17,19 +21,26 @@ if( container == undefined || smartBidRoot == undefined )
   smartBidRoot = createRoot(container);
 }
 
-smartBidRoot.render(
+export function loadHomePage()
+{
   
-  <StrictMode>
-
-    <Header />
-    <BiddingStyle />
-    <br></br><br></br>
-    <Footer />
+  smartBidRoot.render(
     
-  </StrictMode>
+    <StrictMode>
 
-);
+      <Header />
+      <BiddingStyle />
+      <br></br><br></br>
+      <Footer />
+      
+    </StrictMode>
 
+  );
+}
+
+loadHomePage();
+
+// SignUp Page
 
 export function loadSignUpPage()
 {
@@ -46,6 +57,8 @@ export function loadSignUpPage()
 
 }
 
+// Login Page
+
 export function loadLoginPage()
 {
   
@@ -54,6 +67,23 @@ export function loadLoginPage()
     <StrictMode>
 
       <Login />
+      
+    </StrictMode>
+
+  );
+
+}
+
+// PublishAsset Page
+
+export function loadPublishAssetPage()
+{
+  
+  smartBidRoot.render(
+    
+    <StrictMode>
+
+      <PublishAsset />
       
     </StrictMode>
 

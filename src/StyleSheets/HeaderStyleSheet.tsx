@@ -76,3 +76,26 @@ export const loginCSS =
   border: '1px solid #CA8A04',
   borderRadius: '5px',
 }
+
+
+export const headerNameLoggedInCSS =
+{
+
+  fontFamily: "Poppins",
+  fontWeight: "700",
+  fontStyle: "Bold",
+  fontSize: "16px",
+  lineHeight: "24px",
+  verticalAlign: "middle",
+  color: "#704241"
+
+}
+
+export const logoutCSS =
+{
+
+  ...loginCSS,
+  backgroundColor: '#704241',
+  border: '1px solid #704241',
+
+}

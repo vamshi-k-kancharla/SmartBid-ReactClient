@@ -1,7 +1,5 @@
 
-import { loadLoginPage } from '../ClientCode/Home';
 import { leftPaneCSS, rightPaneCSS, smartCSS, bidCSS, getStartedCSS, discoverCSS, allInOneCSS, formLabelCSS, formLabelMustCSS, textInputDivCSS, textInputCSS, submitButtonCSS, submitButtonDivCSS, googleButtonCSS, appleButtonCSS, loginAnchorCSS } from '../StyleSheets/SignUpStyleSheet';
-import { validateUserInputObject } from '../HelperUtils/ClientInputValidator';
 import { submitSignUpDetails } from '../ClientCode/SignUp';
 
 export function SignUpPage() {

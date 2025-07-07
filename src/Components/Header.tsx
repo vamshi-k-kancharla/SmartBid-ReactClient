@@ -1,6 +1,6 @@
 
 import {navCSS, smartCSS, bidCSS, signUpCSS, loginCSS} from '../StyleSheets/HeaderStyleSheet';
-import { loadSignUpPage, loadLoginPage } from '../ClientCode/Home';
+import { loadSignUpPage, loadLoginPage, loadPublishAssetPage } from '../ClientCode/Home';
 
 export function Header() {
   
@@ -23,7 +23,7 @@ export function Header() {
               <ul className='nav row'>
 
                   <li className="col-lg-3"><a href="./HomePage.html">Home</a></li>
-                  <li className="col-lg-3"><a href="./PublishAuction.html">Publish Auctions</a></li> 
+                  <li className="col-lg-3"><a href="#" onClick={loadPublishAssetPage}>Publish Auctions</a></li> 
                   <li className="col-lg-3"><a href="./ViewAuction.html">View Auctions</a></li>
                   <li className="col-lg-3"><a href="./CloseAuction.html">Close Auctions</a></li>
 

@@ -4,7 +4,7 @@ import { SignUpPage } from '../Components/SignUp';
 import { customerObjectKeysForUpload } from '../HelperUtils/GlobalsForClient';
 import { validateUserInputObject } from '../HelperUtils/ClientInputValidator';
 import { sendHttpJsonRequestToSmartBidServerWithCallback } from '../HelperUtils/HttpRestAPIClient'
-import { loadLoginPage, loadSignUpPage } from './Home';
+import { loadHomePage } from './Home';
 
 
 export function SignUp() {
@@ -73,7 +73,7 @@ function successfulCustomerDataFormSubmission(httpResponseText:string)
   console.log("successfulCustomerDataFormSubmission : " + httpResponseText);
   alert("Successfully added customer record to the table : " + httpResponseText);
   
-  loadLoginPage();
+  loadHomePage();
 }
 
 function failureCustomerDataFormSubmission(httpStatusText:string)
@@ -81,6 +81,6 @@ function failureCustomerDataFormSubmission(httpStatusText:string)
   console.log("failureCustomerDataFormSubmission : " + httpStatusText);
   alert("Failed to Add Customer Record : " + httpStatusText);
 
-  loadLoginPage();
+  loadHomePage();
 }
 
