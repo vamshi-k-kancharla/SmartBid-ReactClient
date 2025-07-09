@@ -90,6 +90,26 @@ export function BiddingStyle() {
         
       </div>
 
+      <div id="login-modal1" className="modal fade">
+
+        <div className="modal-content">
+
+          <div className="modal-header">
+            This is the model header
+          </div>
+
+          <div className="modal-body">
+            This is the model body
+          </div>
+
+          <div className="modal-header">
+            This is the model footer
+          </div>
+
+        </div>
+
+      </div>
+
     </div>
 
   );
