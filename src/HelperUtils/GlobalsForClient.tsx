@@ -16,10 +16,10 @@ export const userAuthItemsToBeRemovedFromCache = ["CurrentUser_Password", "Curre
 // Validate & Upload Asset Data
 
 export const auctionAssetUIIdsForUpload = ["id_asset_type", "id_min_auction_price", "id_address", "id_colony", "id_city", "id_state", 
-        "id_country", "id_approval_type", "id_asset_size", "id_built_up_area"];
+        "id_country", "id_approval_type", "id_asset_size", "id_built_up_area", "id_asset_description"];
 
 export const auctionAssetKeysForUpload = ["AssetType", "MinAuctionPrice", "Address", "Colony", "City", "State", 
-        "Country", "ApprovalType", "AssetSize", "BuiltUpArea"];
+        "Country", "ApprovalType", "AssetSize", "BuiltUpArea", "AssetDescription"];
 
 
 // Validate & Upload Customer Data

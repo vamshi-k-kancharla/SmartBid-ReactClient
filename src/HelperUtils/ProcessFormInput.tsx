@@ -12,3 +12,15 @@ export function processInputDataFromForm(userInputObject : { [index: string] : a
     return userInputObject;
 }
 
+export function createFormInputData( userInputObject : {[index : string] : any}, userInputObjectKeys : Array<string> )
+{
+    let formInputData = new FormData();
+
+    for( var currentInputKey of userInputObjectKeys )
+    {
+        formInputData.append(currentInputKey, userInputObject[currentInputKey]);
+    }
+
+    return formInputData;
+}
+

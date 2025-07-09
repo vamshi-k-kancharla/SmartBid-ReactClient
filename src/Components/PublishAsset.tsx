@@ -1,5 +1,6 @@
 
 import { loadHomePage } from '../ClientCode/Home';
+import { submitAuctionAssetDetails } from '../ClientCode/PublishAsset';
 import { submitSignUpDetails } from '../ClientCode/SignUp';
 import { publishAssetPaneCSS, formLabelCSS, formLabelMustCSS, textInputCSS, textInputDivCSS, submitButtonCSS, submitButtonDivCSS, cancelButtonCSS, publishAssetHeadingCSS, publishAssetHeading2CSS, uploadImagesCSS, uploadImageTextCSS, uploadImageSelectionCSS, backToDashboardButtonCSS, backToDashboardPaddingCSS } from '../StyleSheets/PublishAssetStyleSheet';
 
@@ -51,7 +52,7 @@ export function PublishAssetPane() {
         <PublishAssetHeading />
       </div>
 
-      <form onSubmit={(event) => submitSignUpDetails(event)}>
+      <form>
 
           <div style={textInputDivCSS}>
 
@@ -88,7 +89,7 @@ export function PublishAssetPane() {
 
                 <div style={textInputDivCSS}>
 
-                  <select className="col-lg-12" style={textInputCSS} id="id_assettype">
+                  <select className="col-lg-12" style={textInputCSS} id="id_asset_type">
 
                     <option value = ''>Select Asset Type</option>
                     <option value = 'Villa'>Villa</option>
@@ -140,7 +141,7 @@ export function PublishAssetPane() {
 
                 <div style={textInputDivCSS}>
 
-                  <input type="text" className="col-lg-12" style={textInputCSS} placeholder="Enter Colony/Area Name" id="id_min_auction_price"/>
+                  <input type="text" className="col-lg-12" style={textInputCSS} placeholder="Enter Colony/Area Name" id="id_colony"/>
 
                 </div>
               
@@ -271,7 +272,7 @@ export function PublishAssetPane() {
 
           <div className="row" style={submitButtonDivCSS}>
 
-              <button type="submit" className="col-lg-3" style={submitButtonCSS}>Publish Asset</button>
+              <button type="submit" className="col-lg-3" style={submitButtonCSS} onClick={(event) => submitAuctionAssetDetails(event)}>Publish Asset</button>
               <div className="col-lg-1"></div>
               <button className="col-lg-3" style={cancelButtonCSS} onClick={loadHomePage}>Cancel</button>
 
