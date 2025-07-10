@@ -85,6 +85,3 @@ export async function sendHttpFileUploadRequestToSmartBidServerWithCallback(inpu
 
     console.log("Successfully sent the file based http request post");
 }
-
-
-

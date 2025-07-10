@@ -1,7 +1,6 @@
 
 import { loadHomePage } from '../ClientCode/Home';
 import { submitAuctionAssetDetails } from '../ClientCode/PublishAsset';
-import { submitSignUpDetails } from '../ClientCode/SignUp';
 import { publishAssetPaneCSS, formLabelCSS, formLabelMustCSS, textInputCSS, textInputDivCSS, submitButtonCSS, submitButtonDivCSS, cancelButtonCSS, publishAssetHeadingCSS, publishAssetHeading2CSS, uploadImagesCSS, uploadImageTextCSS, uploadImageSelectionCSS, backToDashboardButtonCSS, backToDashboardPaddingCSS } from '../StyleSheets/PublishAssetStyleSheet';
 
 import { HeaderLoggedIn } from './HeaderLoggedIn';
@@ -266,6 +265,36 @@ export function PublishAssetPane() {
             
             </div>
 
+          </div>
+
+          <br/>
+
+          <div className="row">
+
+              <div className="col-lg-6">
+
+                <p className="col-lg-12 text-left" style={formLabelCSS}>Number of BedRooms</p>
+
+                <div style={textInputDivCSS}>
+
+                  <input type="text" className="col-lg-12" style={textInputCSS} placeholder="Enter Min No Of Bedrooms" id="id_min_no_of_bedrooms"/>
+
+                </div>
+              
+              </div>
+  
+              <div className="col-lg-6">
+
+                <p className="col-lg-12 text-left" style={formLabelCSS}>Number of Bathrooms</p>
+
+                <div style={textInputDivCSS}>
+
+                  <input type="text" className="col-lg-12" style={textInputCSS} placeholder="Enter Min No Of Bathrooms" id="id_min_no_of_bathrooms"/>
+
+                </div>
+              
+              </div>
+  
           </div>
 
           <br/><br/><br/>

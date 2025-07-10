@@ -7,7 +7,6 @@ import { BiddingStyle } from '../Components/BiddingStyle';
 import { Footer } from '../Components/Footer';
 
 import { SignUp } from './SignUp';
-import { Login } from './Login';
 import { PublishAsset } from './PublishAsset';
 
 
@@ -51,23 +50,6 @@ export function loadSignUpPage()
 
       <SignUp />
 
-    </StrictMode>
-
-  );
-
-}
-
-// Login Page
-
-export function loadLoginPage()
-{
-  
-  smartBidRoot.render(
-    
-    <StrictMode>
-
-      <Login />
-      
     </StrictMode>
 
   );
