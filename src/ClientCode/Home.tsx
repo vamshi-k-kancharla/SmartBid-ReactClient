@@ -8,6 +8,8 @@ import { Footer } from '../Components/Footer';
 
 import { SignUp } from './SignUp';
 import { PublishAsset } from './PublishAsset';
+import { AuctionDisplayWidgetHomePage } from '../Components/AuctionDisplayWidget';
+import { RetrieveAuctions } from './AuctionDisplay';
 
 
 // Render the Home Page
@@ -20,9 +22,46 @@ if( container == undefined || smartBidRoot == undefined )
   smartBidRoot = createRoot(container);
 }
 
-export function loadHomePage()
+export async function loadHomePage()
 {
+
+  RetrieveAuctions();
   
+  smartBidRoot.render(
+    
+    <StrictMode>
+
+      <Header />
+      <BiddingStyle />
+      <br></br><br></br>
+      <Footer />
+      
+    </StrictMode>
+
+  );
+}
+
+export async function loadHomePageAuctionDetails(auctionDetailsResponseString: string)
+{
+
+  smartBidRoot.render(
+    
+    <StrictMode>
+
+      <Header />
+      <AuctionDisplayWidgetHomePage auctionDetailsResponse = {auctionDetailsResponseString} />
+      <BiddingStyle />
+      <br></br><br></br>
+      <Footer />
+      
+    </StrictMode>
+
+  );
+}
+
+export async function loadHomePageWithoutAuctionDetails()
+{
+
   smartBidRoot.render(
     
     <StrictMode>

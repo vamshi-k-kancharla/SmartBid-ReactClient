@@ -1,6 +1,8 @@
 
 export const httpRequestURLPrefix = "http://127.0.0.1:8000/";
 
+export const httpImagesRequestURLPrefix = "http://192.168.0.101:8080/Smart-Bid/AssetImages/";
+
 export const maxFilesUploadCount = 10;
 
 export const auctionAssetKeysForDisplay = ["AssetType", "Address", "Colony", "City", "State", "Country", "ApprovalType", 
