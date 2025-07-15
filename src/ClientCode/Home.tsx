@@ -10,6 +10,7 @@ import { SignUp } from './SignUp';
 import { PublishAsset } from './PublishAsset';
 import { AuctionDisplayWidgetHomePage } from '../Components/AuctionDisplayWidget';
 import { RetrieveAuctions } from './AuctionDisplay';
+import { PlaceBid } from './PlaceBid';
 
 
 // Render the Home Page
@@ -111,4 +112,22 @@ export function loadPublishAssetPage()
   );
 
 }
+
+// Place Bid Page
+
+export function loadPlaceBidPage()
+{
+  
+  smartBidRoot.render(
+    
+    <StrictMode>
+
+      <PlaceBid />
+      
+    </StrictMode>
+
+  );
+
+}
+
 

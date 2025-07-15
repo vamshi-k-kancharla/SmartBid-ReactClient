@@ -4,6 +4,7 @@ import { auctionDisplayDivCSS, auctionDisplayContentDivCSS, contentHeadingDivCSS
   imageFileDivCSS } from "../StyleSheets/AuctionDisplayStyleSheet";
 
 import { httpImagesRequestURLPrefix } from "../HelperUtils/GlobalsForClient";
+import { loadPlaceBidPage } from "../ClientCode/Home";
 
 
 export function AuctionDisplayWidget(props: any) {
@@ -53,7 +54,7 @@ export function AuctionDisplayWidget(props: any) {
 
         <div className="row" style={placeBidDivCSS}>
 
-            <button className="col-lg-12" style={placeBidButtonCSS}>Place Bid</button>
+            <button className="col-lg-12" style={placeBidButtonCSS} onClick={loadPlaceBidPage}>Place Bid</button>
 
         </div>
 
