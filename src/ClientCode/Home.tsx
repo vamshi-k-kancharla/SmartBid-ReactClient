@@ -115,14 +115,14 @@ export function loadPublishAssetPage()
 
 // Place Bid Page
 
-export function loadPlaceBidPage()
+export function loadPlaceBidPage(event : any, auctionDetailsResponse : string, auctionIndex : Number)
 {
   
   smartBidRoot.render(
     
     <StrictMode>
 
-      <PlaceBid />
+      <PlaceBid auctionDetailsResponse = {auctionDetailsResponse} auctionIndex = {auctionIndex} />
       
     </StrictMode>
 

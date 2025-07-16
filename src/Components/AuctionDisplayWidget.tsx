@@ -9,7 +9,6 @@ import { loadPlaceBidPage } from "../ClientCode/Home";
 
 export function AuctionDisplayWidget(props: any) {
 
-
   let auctionDetailsArrayObject = JSON.parse(props.auctionDetailsResponse);
   let auctionIndex = props.auctionDetailsIndex;
 
@@ -54,7 +53,8 @@ export function AuctionDisplayWidget(props: any) {
 
         <div className="row" style={placeBidDivCSS}>
 
-            <button className="col-lg-12" style={placeBidButtonCSS} onClick={loadPlaceBidPage}>Place Bid</button>
+            <button className="col-lg-12" style={placeBidButtonCSS} 
+              onClick={(event) => loadPlaceBidPage(event, props.auctionDetailsResponse, auctionIndex)}>Place Bid</button>
 
         </div>
 

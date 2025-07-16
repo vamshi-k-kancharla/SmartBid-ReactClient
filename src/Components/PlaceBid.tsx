@@ -21,7 +21,7 @@ import { HeaderLoggedIn } from './HeaderLoggedIn';
 import { httpImagesRequestURLPrefix } from '../HelperUtils/GlobalsForClient';
 
 
-export function PlaceBidPage() {
+export function PlaceBidPage(props:any) {
   
   return (
 
@@ -38,7 +38,7 @@ export function PlaceBidPage() {
 
         <div className='col-lg-8' style={placeBidPaneCSS}>
 
-          <PlaceBidPane />
+          <PlaceBidPane auctionDetailsResponse = {props.auctionDetailsResponse} auctionIndex = {props.auctionIndex}/>
 
         </div>
 
@@ -53,21 +53,24 @@ export function PlaceBidPage() {
   
 }
 
-export function PlaceBidPane() {
+export function PlaceBidPane(props:any) {
   
-  let assetType = 'Flat';
-  let assetColony = 'Masjid Banda';
-  let assetCity = 'Hyderabad';
-  let assetState = 'Telangana';
-  let assetAuctionPrice = '10000000';
-  let assetBedRooms = '4';
-  let assetBathRooms = '3';
-  let assetSize = '200 Sq Yards';
-  let assetBuiltupArea = '2000 SFT';
-  let assetCurrentBidPrice = '12500000';
-  let assetId = 21;
+  let auctionDetailsArrayObject = JSON.parse(props.auctionDetailsResponse);
+  let auctionIndex = props.auctionIndex;
+
+  let assetType = auctionDetailsArrayObject[auctionIndex].AssetType;
+  let assetColony = auctionDetailsArrayObject[auctionIndex].Colony;
+  let assetCity = auctionDetailsArrayObject[auctionIndex].City;
+  let assetState = auctionDetailsArrayObject[auctionIndex].State;
+  let assetAuctionPrice = auctionDetailsArrayObject[auctionIndex].MinAuctionPrice;
+  let assetBedRooms = auctionDetailsArrayObject[auctionIndex].AssetBedrooms;
+  let assetBathRooms = auctionDetailsArrayObject[auctionIndex].AssetBathrooms;
+  let assetSize = auctionDetailsArrayObject[auctionIndex].AssetSize;
+  let assetBuiltupArea = auctionDetailsArrayObject[auctionIndex].BuiltUpArea;
+  let assetCurrentBidPrice = auctionDetailsArrayObject[auctionIndex].CurrentBidPrice;
+  let assetId = auctionDetailsArrayObject[auctionIndex].AssetId;
   let imageSourcePath = httpImagesRequestURLPrefix + "asset_" + assetId + "_file_0.jpg";
-  let assetDescription = "Beautiful flat in Masjid Banda for Auction. Has lots of common amenities like zym, swimming pool, play court etc.";
+  let assetDescription = auctionDetailsArrayObject[auctionIndex].AssetDescription;
 
   console.log("Image Source Path = " + imageSourcePath);
   

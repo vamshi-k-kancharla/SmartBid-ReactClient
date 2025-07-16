@@ -1,5 +1,4 @@
 import { StrictMode } from 'react';
-import { PublishAssetPage } from '../Components/PublishAsset';
 
 import { validateUserInputObject } from '../HelperUtils/ClientInputValidator';
 import { sendHttpFileUploadRequestToSmartBidServerWithCallback } from '../HelperUtils/HttpRestAPIClient'
@@ -9,13 +8,13 @@ import { auctionAssetKeysForUpload, auctionAssetUIIdsForUpload, maxFilesUploadCo
 import { PlaceBidPage } from '../Components/PlaceBid';
 
 
-export function PlaceBid() {
+export function PlaceBid(props : any) {
 
   return (
     
     <StrictMode>
 
-      <PlaceBidPage />
+      <PlaceBidPage auctionDetailsResponse={props.auctionDetailsResponse} auctionIndex = {props.auctionIndex}/>
       
     </StrictMode>
 
