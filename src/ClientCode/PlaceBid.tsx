@@ -1,10 +1,7 @@
 import { StrictMode } from 'react';
 
-import { validateUserInputObject } from '../HelperUtils/ClientInputValidator';
-import { sendHttpFileUploadRequestToSmartBidServerWithCallback } from '../HelperUtils/HttpRestAPIClient'
+import { sendHttpRequestToSmartBidServerWithCallbackFunction } from '../HelperUtils/HttpRestAPIClient'
 import { loadHomePage } from './Home';
-import { processInputDataFromForm, createFormInputData } from '../HelperUtils/ProcessFormInput';
-import { auctionAssetKeysForUpload, auctionAssetUIIdsForUpload, maxFilesUploadCount } from '../HelperUtils/GlobalsForClient';
 import { PlaceBidPage } from '../Components/PlaceBid';
 
 
@@ -22,69 +19,56 @@ export function PlaceBid(props : any) {
 
 }
 
-export async function submitAuctionAssetDetails(event:any)
+export async function placeQuickBid(minBidPrice:number, assetId: number)
 {
 
-      event.preventDefault();
+    console.log("placeQuickBid To Server : minBidPrice = " + minBidPrice);
 
-      let auctionAssetInputObject : {[index : string] : any} = {};
+    let yourBidPrice = (document.getElementById("id_quick_bid") as HTMLFormElement).value;
 
-      // Process Form Input Data
+    if( yourBidPrice == "" || yourBidPrice <= minBidPrice)
+    {
+        alert("Minimum Auction price that you can bid for is : " + minBidPrice);
+        return;
+    }
 
-      auctionAssetInputObject = processInputDataFromForm( auctionAssetInputObject,
-          auctionAssetKeysForUpload,
-          auctionAssetUIIdsForUpload
-      );
+    let bidDetailsObject : { [index:string] : any} = {};
 
-      // Validate form input data
-      
-      if( !validateUserInputObject(auctionAssetInputObject, 
-              auctionAssetKeysForUpload) )
-      {
-          alert("One or more of Auction Asset Input values are missing");
-          return;
-      }
+    bidDetailsObject["assetId"] = assetId;
+    bidDetailsObject["customerId"] = 61;
+    bidDetailsObject["bidPrice"] = yourBidPrice;
 
-      // Create Form Data Input Object
-      
-      let inputFormData = createFormInputData(auctionAssetInputObject, 
-          auctionAssetKeysForUpload);
+    let bidPlaceRequestUrlString = buildHttpRequestURLForBiddingData(bidDetailsObject);
+    
+    console.log("placeQuickBid : bidPlaceRequestUrlString = " + bidPlaceRequestUrlString);
 
-      inputFormData.append( "SellerCustomerId" , "59" );
+    await sendHttpRequestToSmartBidServerWithCallbackFunction( bidPlaceRequestUrlString, 
+      successResponsePlaceQuickBid, failureResponsePlaceQuickBid );
 
-      // Upload files
-      
-      let uploadedFiles = (document.getElementById("id_files_To_Be_Uploaded") as HTMLFormElement).files;
-
-      if( uploadedFiles.length > maxFilesUploadCount )
-      {
-          alert("Maximum of 10 files can be uploaded to the Server...Please re-upload");
-          return;
-      }
-
-      for( let i = 0 ; i < uploadedFiles.length; i++ )
-      {
-          inputFormData.append("file" + i.toString(), uploadedFiles[i]);
-      }
-
-      console.log("Sending File Input based Http Request to Server : ");
-
-      await sendHttpFileUploadRequestToSmartBidServerWithCallback( "UploadAuctionPhotos", 
-          inputFormData, successResponseUploadAuctionPhotos, failureResponseUploadAuctionPhotos );
 }
 
-function successResponseUploadAuctionPhotos(httpResponseText:string)
+
+function buildHttpRequestURLForBiddingData(bidDetailsObject : { [index:string] : any })
 {
-  console.log("successResponseUploadAuctionPhotos : " + httpResponseText);
-  alert("Successfully added asset record details to the table : " + httpResponseText);
+    let bidDataUrlSuffix = "AddBid?AssetId="+bidDetailsObject.assetId+
+    "&CustomerId="+bidDetailsObject.customerId+
+    "&BidPrice="+bidDetailsObject.bidPrice;
+
+    return bidDataUrlSuffix;
+}
+
+function successResponsePlaceQuickBid(httpResponseText:string)
+{
+  console.log("successResponsePlaceQuickBid : " + httpResponseText);
+  alert("Successfully placed quick bid to the server : " + httpResponseText);
   
   loadHomePage();
 }
 
-function failureResponseUploadAuctionPhotos(httpStatusText:string)
+function failureResponsePlaceQuickBid(httpStatusText:string)
 {
-  console.log("failureResponseUploadAuctionPhotos : " + httpStatusText);
-  alert("Failed to Add asset record details to the table : " + httpStatusText);
+  console.log("failureResponsePlaceQuickBid : " + httpStatusText);
+  alert("Failed to place quick bid to the server : " + httpStatusText);
 
   loadHomePage();
 }

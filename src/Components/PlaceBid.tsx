@@ -20,6 +20,8 @@ import { HeaderLoggedIn } from './HeaderLoggedIn';
 
 import { httpImagesRequestURLPrefix } from '../HelperUtils/GlobalsForClient';
 
+import { placeQuickBid } from '../ClientCode/PlaceBid';
+
 
 export function PlaceBidPage(props:any) {
   
@@ -131,7 +133,7 @@ export function PlaceBidPane(props:any) {
 
           <div style={{paddingTop:'30px'}}>
 
-            <QuickBidPane assetAuctionPrice = {assetAuctionPrice} currentBidPrice = {assetCurrentBidPrice} />
+            <QuickBidPane assetAuctionPrice = {assetAuctionPrice} currentBidPrice = {assetCurrentBidPrice} assetId = {assetId} />
 
           </div>
 
@@ -245,14 +247,14 @@ export function QuickBidPane(props : any) {
 
       <div style={{paddingTop:'8px', paddingLeft:'36px'}} className='row'>
         
-        <input type='text' className='col-lg-10' style={textInputCSS} placeholder= {minBidPrice} />
+        <input type='text' className='col-lg-10' style={textInputCSS} id="id_quick_bid" placeholder= {minBidPrice} />
 
       </div>
 
 
       <div style={{paddingTop:'25px', paddingLeft:'36px'}} className='row'>
         
-        <button className="col-lg-10" style={placeBidButtonCSS}>Place Quick Bid</button>
+        <button className="col-lg-10" style={placeBidButtonCSS} onClick={() => placeQuickBid(props.currentBidPrice, props.assetId)}>Place Quick Bid</button>
 
       </div>
 
