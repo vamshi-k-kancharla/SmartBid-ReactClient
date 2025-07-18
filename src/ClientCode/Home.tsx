@@ -11,6 +11,8 @@ import { PublishAsset } from './PublishAsset';
 import { AuctionDisplayWidgetHomePage } from '../Components/AuctionDisplayWidget';
 import { RetrieveAuctions } from './AuctionDisplay';
 import { PlaceBid } from './PlaceBid';
+import { RetrieveCustomerAuctionsAndBids } from './CustomerDashboard';
+import { CustomerDashboardPage } from '../Components/CustomerDashboard';
 
 
 // Render the Home Page
@@ -129,5 +131,31 @@ export function loadPlaceBidPage(event : any, auctionDetailsResponse : string, a
   );
 
 }
+
+// Customer Dashboard Page
+
+export function loadCustomerDashboardPage()
+{
+
+  RetrieveCustomerAuctionsAndBids();
+  
+}
+
+export function loadCustomerDashboardPageWithAuctionsAndBids(auctionsAndBidsResponse : string)
+{
+
+  smartBidRoot.render(
+    
+    <StrictMode>
+
+      <CustomerDashboardPage auctionsAndBidsResponse = {auctionsAndBidsResponse} />
+      
+    </StrictMode>
+
+  );
+
+}
+
+
 
 
