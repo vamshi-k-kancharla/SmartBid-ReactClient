@@ -6,6 +6,8 @@ import { customerAuctionsAndBidsContentCSS, customerAuctionsAndBidsDivCSS, custo
 
 import { HeaderLoggedIn } from './HeaderLoggedIn';
 
+import { httpImagesRequestURLPrefix } from '../HelperUtils/GlobalsForClient';
+
 
 export function CustomerDashboardPage(props:any) {
   
@@ -84,7 +86,7 @@ export function DashboardPane(props:any) {
 
           <ul className='nav row'>
 
-            <li className='col-lg-3'><a href='#' onClick={renderMyAuctionsPane}>My Auctions</a></li>
+            <li className='col-lg-3'><a href='#' onClick={() => renderMyAuctionsPane(auctionsAndBidResponse.CustomerAuctions)}>My Auctions</a></li>
             <li className='col-lg-3'><a href='#' onClick={renderMyBidsPane}>My Bids</a></li>
 
           </ul>
@@ -95,7 +97,7 @@ export function DashboardPane(props:any) {
 
       <br/>
 
-      <div id = 'id_customer_auctions_bids_div' style={{paddingLeft : '15px'}} onLoad={renderMyAuctionsPane}>
+      <div id = 'id_customer_auctions_bids_div' style={{paddingLeft : '15px'}} onLoad={() => renderMyAuctionsPane(auctionsAndBidResponse.CustomerAuctions)}>
 
         <img src="http://192.168.0.101:8080/Smart-Bid/AssetImages/ForeverImage.jpg"></img>
 
@@ -137,7 +139,7 @@ export function renderMyBidsPane() {
 }
 
 
-export function renderMyAuctionsPane() {
+export function renderMyAuctionsPane( customerAuctionsResponse : Array<{[index : string] : any}> ) {
 
   // Remove all the children from Auctions&Bids Plane
 
@@ -150,6 +152,20 @@ export function renderMyAuctionsPane() {
   // Add My Auctions as Children
 
   let auctionsAndBidsDivPane = document.getElementById("id_customer_auctions_bids_div");
+
+  for( let i = 0 ; i < customerAuctionsResponse.length; i++ )
+  {
+
+    let myAuctionsAndBidsBufferDivPane = document.createElement('div');
+
+    myAuctionsAndBidsBufferDivPane.className = 'col-lg-12';
+
+    myAuctionsAndBidsBufferDivPane.style.height = '20px';
+
+    myAuctionsDivElement.append(myAuctionsAndBidsBufferDivPane);
+    let myIndiAuctionDivElement : any = returnIndividualAuctionDivPane(customerAuctionsResponse, i);
+    myAuctionsDivElement?.append(myIndiAuctionDivElement);
+  }
 
   auctionsAndBidsDivPane?.append(myAuctionsDivElement);
 
@@ -217,4 +233,177 @@ function returnAuctionsAndBidsSubHeadingNode( auctionAndBidsSubHeading : string 
 
 }
 
+
+function returnIndividualAuctionDivPane( auctionDetailsResponse : Array<{[index : string] : any}>, auctionIndex : any ) : any {
+
+  console.log("assetId = " + auctionDetailsResponse[auctionIndex].AssetId);
+  
+  let assetType = auctionDetailsResponse[auctionIndex].AssetType;
+  let assetColony = auctionDetailsResponse[auctionIndex].Colony;
+  let assetCurrentBidPrice = auctionDetailsResponse[auctionIndex].CurrentBidPrice;
+  let assetId = auctionDetailsResponse[auctionIndex].AssetId;
+  let imageSourcePath = httpImagesRequestURLPrefix + "asset_" + assetId + "_file_0.jpg";
+  let assetStatus = auctionDetailsResponse[auctionIndex].Status;
+
+
+  console.log("Image Source Path = " + imageSourcePath);
+  
+  let myAuctionsDivPane = document.createElement('div');
+
+  myAuctionsDivPane.className = 'col-lg-12';
+
+  myAuctionsDivPane.style.paddingTop = '15px';
+  myAuctionsDivPane.style.paddingBottom = '15px';
+  myAuctionsDivPane.style.paddingLeft = '15px';
+  myAuctionsDivPane.style.border = '1px solid #C6C6C6';
+  myAuctionsDivPane.style.borderRadius = '8px';
+
+  // Add Individual elements to auctions div pane
+  // Image Element
+
+  let auctionImageElement = returnImageElement(imageSourcePath);
+  myAuctionsDivPane.append(auctionImageElement);
+
+  // Auction Content Element
+
+  let auctionContent = assetType + " in " + assetColony;
+  let auctionSubContent = "Current Bid : " + assetCurrentBidPrice;
+
+  let auctionContentDivPane = returnMyAuctionsContentDivPane(auctionContent, auctionSubContent);
+
+  myAuctionsDivPane.append(auctionContentDivPane);
+
+  // Auction Status element
+
+  let auctionStatusDivPane = returnMyAuctionsStatusDivPane(assetStatus);
+  myAuctionsDivPane.append(auctionStatusDivPane);
+
+  return myAuctionsDivPane;
+
+}
+
+
+function returnImageElement( imageSourcePath : string ) : any {
+
+  let myAuctionImageDivElement = document.createElement('div');
+
+  myAuctionImageDivElement.className = 'col-lg-2';
+
+  let myAuctionImageElement = document.createElement('img');
+
+  myAuctionImageElement.src = imageSourcePath;
+
+  myAuctionImageElement.style.borderRadius = '8px';
+  myAuctionImageElement.style.border = '1px';
+  myAuctionImageElement.style.width = '75%';
+  myAuctionImageElement.style.height = '18%';
+
+  myAuctionImageDivElement.append(myAuctionImageElement);
+
+  return myAuctionImageDivElement;
+
+}
+
+function returnMyAuctionsContentDivPane( auctionsContent : string, auctionsSubContent : string ) : any {
+
+  let myAuctionsAndBidsDivPane = document.createElement('div');
+
+  myAuctionsAndBidsDivPane.className = 'col-lg-8';
+
+  myAuctionsAndBidsDivPane.style.paddingTop = '10px';
+  myAuctionsAndBidsDivPane.style.paddingBottom = '10px';
+
+  let currentTextHeadingNode = returnAuctionsContent(auctionsContent);
+  myAuctionsAndBidsDivPane.append(currentTextHeadingNode);
+
+  let currentTextSubHeadingNode = returnAuctionsSubContent(auctionsSubContent);
+  myAuctionsAndBidsDivPane.append(currentTextSubHeadingNode);
+
+  return myAuctionsAndBidsDivPane;
+
+}
+
+function returnAuctionsContent( auctionAndBidsHeading : string ) : any {
+
+  let currentHeadingDivNode = document.createElement('div');
+  let currentTextContent = document.createTextNode(auctionAndBidsHeading);
+
+  currentHeadingDivNode.style.fontFamily = 'Poppins';
+  currentHeadingDivNode.style.fontWeight = '700';
+  currentHeadingDivNode.style.fontStyle = 'Bold';
+  currentHeadingDivNode.style.fontSize = '16px';
+  currentHeadingDivNode.style.lineHeight = '24px';
+  currentHeadingDivNode.style.verticalAlign = 'middle';
+  currentHeadingDivNode.style.color = '#292524';
+
+  currentHeadingDivNode.append(currentTextContent);
+
+  return currentHeadingDivNode;
+
+}
+
+function returnAuctionsSubContent( auctionAndBidsSubHeading : string ) : any {
+
+  let currentHeadingDivNode = document.createElement('div');
+  let currentTextContent = document.createTextNode(auctionAndBidsSubHeading);
+
+  currentHeadingDivNode.style.paddingTop = '5px';
+  currentHeadingDivNode.style.fontFamily = 'Poppins';
+  currentHeadingDivNode.style.fontWeight = '400';
+  currentHeadingDivNode.style.fontStyle = 'Regular';
+  currentHeadingDivNode.style.fontSize = '12px';
+  currentHeadingDivNode.style.lineHeight = '18px';
+  currentHeadingDivNode.style.verticalAlign = 'middle';
+  currentHeadingDivNode.style.color = '#57534E';
+
+  currentHeadingDivNode.append(currentTextContent);
+
+  return currentHeadingDivNode;
+
+}
+
+
+function returnMyAuctionsStatusDivPane( auctionStatus : string ) : any {
+
+  let myAuctionsAndBidsDivPane = document.createElement('div');
+
+  myAuctionsAndBidsDivPane.className = 'col-lg-2';
+
+  myAuctionsAndBidsDivPane.style.paddingTop = '20px';
+  myAuctionsAndBidsDivPane.style.paddingBottom = '20px';
+
+
+  let auctionStatusButtonNode = document.createElement('button');
+  auctionStatusButtonNode.innerHTML = auctionStatus;
+
+  auctionStatusButtonNode.style.paddingTop = '5px';
+  auctionStatusButtonNode.style.paddingBottom = '5px';
+  auctionStatusButtonNode.style.paddingLeft = '15px';
+  auctionStatusButtonNode.style.paddingRight = '15px';
+
+  auctionStatusButtonNode.style.fontFamily = 'Poppins';
+  auctionStatusButtonNode.style.fontWeight = '400';
+  auctionStatusButtonNode.style.fontStyle = 'Regular';
+  auctionStatusButtonNode.style.fontSize = '12px';
+  auctionStatusButtonNode.style.lineHeight = '18px';
+  auctionStatusButtonNode.style.verticalAlign = 'middle';
+  auctionStatusButtonNode.style.borderRadius = '30px';
+
+  if( auctionStatus.toLocaleLowerCase() === 'open' )
+  {
+    auctionStatusButtonNode.style.backgroundColor = '#0EA5E9';
+    auctionStatusButtonNode.style.border = '1px solid #0EA5E9';
+  }
+  else
+  {
+    auctionStatusButtonNode.style.backgroundColor = '#ff4f00';
+    auctionStatusButtonNode.style.border = '1px solid #ff4f00';
+  }
+  auctionStatusButtonNode.style.color = '#FFFFFF';
+
+  myAuctionsAndBidsDivPane.append(auctionStatusButtonNode);
+
+  return myAuctionsAndBidsDivPane;
+
+}
 
