@@ -1,13 +1,12 @@
-import { StrictMode } from 'react';
-
 import { sendHttpRequestToSmartBidServerWithCallbackFunction } from '../HelperUtils/HttpRestAPIClient'
-import { loadCustomerDashboardPageWithAuctionsAndBids, loadHomePage } from './Home';
+import { loadCustomerDashboardPage, loadCustomerDashboardPageWithAuctionsAndBids, loadHomePage } from './Home';
 
+// Retrieve Customer Auctions and Bids
 
 export function RetrieveCustomerAuctionsAndBids()
 {
 
-    let retrieveAuctionsRequestUrlString = "CustomerAuctionsAndBids?SellerCustomerId=60";
+    let retrieveAuctionsRequestUrlString = "CustomerAuctionsAndBids?SellerCustomerId=59";
     
     sendHttpRequestToSmartBidServerWithCallbackFunction( retrieveAuctionsRequestUrlString, successfulBidsAndAuctionsResponseFunction,
         failureBidsAndAuctionsResponseFunction
@@ -28,4 +27,31 @@ export function failureBidsAndAuctionsResponseFunction( auctionsAndBidsResponseS
     loadHomePage();
 }
 
+
+// Close the auctions 
+
+export function closeAuction(currentBidPrice : string, assetId : Number)
+{
+    alert("Buyer & Seller have agreed to close the Auction for the price => " + currentBidPrice);
+
+    let closeAuctionUrlSuffix = "CloseAuction?AssetId="+assetId;
+    
+    console.log("closeAuctionUrlSuffix = " + closeAuctionUrlSuffix);
+
+    sendHttpRequestToSmartBidServerWithCallbackFunction(closeAuctionUrlSuffix, successBidResponseCallbackFunction, 
+        failureBidResponseCallbackFunction
+    );
+}
+
+function successBidResponseCallbackFunction()
+{
+    alert("Auction is successfully closed");
+    loadCustomerDashboardPage();
+}
+
+function failureBidResponseCallbackFunction()
+{
+    alert("Auction closure failed...Please follow up");
+    loadCustomerDashboardPage();
+}
 

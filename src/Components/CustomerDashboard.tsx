@@ -6,6 +6,8 @@ import { customerAuctionsAndBidsContentCSS, customerAuctionsAndBidsDivCSS, custo
 
 import { HeaderLoggedIn } from './HeaderLoggedIn';
 
+import { closeAuction } from '../ClientCode/CustomerDashboard';
+
 import { httpImagesRequestURLPrefix } from '../HelperUtils/GlobalsForClient';
 
 export function CustomerDashboardPage(props:any) {
@@ -46,6 +48,9 @@ export function DashboardPane(props:any) {
   let customerAuctionsCount = auctionsAndBidResponse.CustomerAuctions.length;
   let customerBidsCount = auctionsAndBidResponse.CustomerBids.length;
 
+  console.log("CustomerDashboard : DashboardPane => " + props.auctionsAndBidsResponse);
+
+  renderMyAuctionsPane(auctionsAndBidResponse.CustomerAuctions);
 
   return (
 
@@ -404,6 +409,8 @@ My Auctions Div Pane
 
 export function renderMyAuctionsPane( customerAuctionsResponse : Array<{[index : string] : any}> ) {
 
+  console.log("CustomerDashboard : renderMyAuctionsPane => " + customerAuctionsResponse.length );
+
   // Remove all the children from Auctions&auctions Plane
 
   removeAllChildrenFromAuctionsBidsPane();
@@ -536,7 +543,7 @@ function returnIndividualAuctionDivPane( auctionDetailsResponse : Array<{[index 
 
   if ( assetStatus.toLocaleLowerCase() == 'open' )
   {
-    let closeAuctionDivPane = returnCloseAuctionDivPane();
+    let closeAuctionDivPane = returnCloseAuctionDivPane(assetCurrentBidPrice, assetId);
     myAuctionsDivPane.append(closeAuctionDivPane);
   }
 
@@ -696,7 +703,7 @@ function returnMyAuctionsStatusDivPane( auctionStatus : string ) : any {
 }
 
 
-function returnCloseAuctionDivPane( ) : any {
+function returnCloseAuctionDivPane( currentBidPrice : string, assetId: Number ) : any {
 
   let myAuctionsDivPane = document.createElement('div');
 
@@ -708,6 +715,8 @@ function returnCloseAuctionDivPane( ) : any {
 
   let closeAuctionButtonNode = document.createElement('button');
   closeAuctionButtonNode.innerHTML = "Close Auction";
+
+  closeAuctionButtonNode.onclick = () => closeAuction(currentBidPrice, assetId);
 
   closeAuctionButtonNode.style.paddingTop = '5px';
   closeAuctionButtonNode.style.paddingBottom = '5px';
