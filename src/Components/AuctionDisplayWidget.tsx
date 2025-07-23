@@ -24,6 +24,7 @@ export function AuctionDisplayWidget(props: any) {
   let assetCurrentBidPrice = auctionDetailsArrayObject[auctionIndex].CurrentBidPrice;
   let assetId = auctionDetailsArrayObject[auctionIndex].AssetId;
   let imageSourcePath = httpImagesRequestURLPrefix + "asset_" + assetId + "_file_0.jpg";
+  let assetBiddingType = auctionDetailsArrayObject[auctionIndex].BiddingType;
 
   console.log("Image Source Path = " + imageSourcePath);
   
@@ -49,7 +50,10 @@ export function AuctionDisplayWidget(props: any) {
           
         </div>
 
-        <div style={currentBidDivCSS}><span>Current Bid : </span>&#8377;&nbsp;{assetCurrentBidPrice}</div>
+        { ( assetBiddingType.toLocaleLowerCase() == 'secretive' ) ?
+          ( <div style={currentBidDivCSS}><span>Current Bid : </span>********</div> ) :
+          ( <div style={currentBidDivCSS}><span>Current Bid : </span>&#8377;&nbsp;{assetCurrentBidPrice}</div> )
+        }
 
         <div className="row" style={placeBidDivCSS}>
 

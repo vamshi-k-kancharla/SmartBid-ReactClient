@@ -73,6 +73,7 @@ export function PlaceBidPane(props:any) {
   let assetId = auctionDetailsArrayObject[auctionIndex].AssetId;
   let imageSourcePath = httpImagesRequestURLPrefix + "asset_" + assetId + "_file_0.jpg";
   let assetDescription = auctionDetailsArrayObject[auctionIndex].AssetDescription;
+  let assetBiddingType = auctionDetailsArrayObject[auctionIndex].BiddingType;
 
   console.log("Image Source Path = " + imageSourcePath);
   
@@ -123,17 +124,19 @@ export function PlaceBidPane(props:any) {
 
         <div className='col-lg-4'>
 
-          <button style={openBiddingButtonCSS}>Open Bidding</button>
-
+          { ( assetBiddingType.toLocaleLowerCase() == 'secretive' ) ? 
+            ( <button style={openBiddingButtonCSS}>Secretive Bidding</button> ) : 
+            ( <button style={openBiddingButtonCSS}>Open Bidding</button> ) }
+          
           <div style={{paddingTop:'30px'}}>
 
-            <BiddingStatusPane assetAuctionPrice = {assetAuctionPrice} currentBidPrice = {assetCurrentBidPrice} />
+            <BiddingStatusPane assetAuctionPrice = {assetAuctionPrice} currentBidPrice = {assetCurrentBidPrice} assetBiddingType = {assetBiddingType} />
 
           </div>
 
           <div style={{paddingTop:'30px'}}>
 
-            <QuickBidPane assetAuctionPrice = {assetAuctionPrice} currentBidPrice = {assetCurrentBidPrice} assetId = {assetId} />
+            <QuickBidPane assetAuctionPrice = {assetAuctionPrice} currentBidPrice = {assetCurrentBidPrice} assetId = {assetId} assetBiddingType = {assetBiddingType} />
 
           </div>
 
@@ -159,7 +162,7 @@ export function BackToDashboard() {
         <div className='row col-lg-12' style={backToDashboardPaddingCSS}>
           
           <button className="col-lg-4" style={backToDashboardButtonCSS} onClick={loadHomePage}> 
-            &larr;&nbsp;&nbsp; Back To Customer Dashboard
+            &larr;&nbsp;&nbsp; Back To Home Page
           </button>
 
         </div>
@@ -175,6 +178,8 @@ export function BackToDashboard() {
 }
 
 export function BiddingStatusPane(props : any) {
+
+  let assetCurrentBiddingPrice = ( props.assetBiddingType.toLocaleLowerCase() == 'secretive' ) ? "**********" : ( props.currentBidPrice );
   
   return (
 
@@ -214,7 +219,9 @@ export function BiddingStatusPane(props : any) {
       <div style={{paddingTop:'4px'}} className='row'>
         
         <div className='col-lg-4'></div>
-        <div className='col-lg-4' style={currentBidValueCSS}>&#8377;&nbsp;{props.currentBidPrice}</div>
+        { ( props.assetBiddingType.toLocaleLowerCase() == 'secretive' ) ? 
+        ( <div className='col-lg-4' style={currentBidValueCSS}>{assetCurrentBiddingPrice}</div> ) : 
+        ( <div className='col-lg-4' style={currentBidValueCSS}>&#8377;&nbsp;{assetCurrentBiddingPrice}</div> ) }
         <div className='col-lg-4'></div>
 
       </div>
@@ -227,7 +234,8 @@ export function BiddingStatusPane(props : any) {
 
 export function QuickBidPane(props : any) {
 
-  let minBidPrice = 'Min Bid : ' + props.currentBidPrice + '+';
+  let minBidPrice = ( props.assetBiddingType.toLocaleLowerCase() == 'secretive' ) ? props.assetAuctionPrice :  props.currentBidPrice;
+  let minBidPriceContent = 'Min Bid : ' + minBidPrice + '+';
   
   return (
 
@@ -247,14 +255,14 @@ export function QuickBidPane(props : any) {
 
       <div style={{paddingTop:'8px', paddingLeft:'36px'}} className='row'>
         
-        <input type='text' className='col-lg-10' style={textInputCSS} id="id_quick_bid" placeholder= {minBidPrice} />
+        <input type='text' className='col-lg-10' style={textInputCSS} id="id_quick_bid" placeholder= {minBidPriceContent} />
 
       </div>
 
 
       <div style={{paddingTop:'25px', paddingLeft:'36px'}} className='row'>
         
-        <button className="col-lg-10" style={placeBidButtonCSS} onClick={() => placeQuickBid(props.currentBidPrice, props.assetId)}>Place Quick Bid</button>
+        <button className="col-lg-10" style={placeBidButtonCSS} onClick={() => placeQuickBid(minBidPrice, props.assetId)}>Place Quick Bid</button>
 
       </div>
 

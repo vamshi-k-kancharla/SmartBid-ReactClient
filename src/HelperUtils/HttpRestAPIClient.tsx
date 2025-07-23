@@ -69,8 +69,8 @@ export async function sendHttpFileUploadRequestToSmartBidServerWithCallback(inpu
         }
         else
         {
-            console.error("Error occured while sending the request = " + xmlHttpRequest.status);
-            console.error("Error Text = " + xmlHttpRequest.statusText);
+            console.log("Error occured while sending the request = " + xmlHttpRequest.status);
+            console.log("Error Text = " + xmlHttpRequest.statusText);
 
             failureCallbackFunction(xmlHttpRequest.responseText);  
         }
@@ -113,8 +113,8 @@ export async function sendHttpRequestToSmartBidServerWithReturnValue(urlParamsSt
         }
         else
         {
-            console.error("Error occured while sending the request = " + xmlHttpRequest.status);
-            console.error("Error Text = " + xmlHttpRequest.statusText);
+            console.log("Error occured while sending the request = " + xmlHttpRequest.status);
+            console.log("Error Text = " + xmlHttpRequest.statusText);
         }
     };
 
@@ -159,8 +159,8 @@ export async function sendHttpRequestToSmartBidServerWithCallbackFunction( urlPa
         }
         else
         {
-            console.error("Error occured while sending the request = " + xmlHttpRequest.status);
-            console.error("Error Text = " + xmlHttpRequest.statusText);
+            console.log("Error occured while sending the request = " + xmlHttpRequest.status);
+            console.log("Error Text = " + xmlHttpRequest.statusText);
 
             failureCallbackFunction(xmlHttpRequest.responseText);
         }

@@ -49,6 +49,7 @@ export function DashboardPane(props:any) {
   let customerBidsCount = auctionsAndBidResponse.CustomerBids.length;
 
   console.log("CustomerDashboard : DashboardPane => " + props.auctionsAndBidsResponse);
+  console.log("CustomerDashboard : DashboardPane => customerAuctionsCount = " + customerAuctionsCount);
 
   renderMyAuctionsPane(auctionsAndBidResponse.CustomerAuctions);
 
@@ -423,6 +424,8 @@ export function renderMyAuctionsPane( customerAuctionsResponse : Array<{[index :
   // Add My Auctions as Children
 
   let auctionsAndBidsDivPane = document.getElementById("id_customer_auctions_bids_div");
+
+  console.log("CustomerDashboard : auctionsAndBidsDivPane => " + auctionsAndBidsDivPane );
 
   for( let i = 0 ; i < customerAuctionsResponse.length; i++ )
   {

@@ -26,7 +26,7 @@ export async function placeQuickBid(minBidPrice:number, assetId: number)
 
     let yourBidPrice = (document.getElementById("id_quick_bid") as HTMLFormElement).value;
 
-    if( yourBidPrice == "" || yourBidPrice <= minBidPrice)
+    if( yourBidPrice == "" || Number(yourBidPrice) <= Number(minBidPrice) )
     {
         alert("Minimum Auction price that you can bid for is : " + minBidPrice);
         return;
