@@ -10,7 +10,7 @@ import { SignUp } from './SignUp';
 import { PublishAsset } from './PublishAsset';
 import { AuctionDisplayWidgetHomePage } from '../Components/AuctionDisplayWidget';
 import { RetrieveAuctions } from './AuctionDisplay';
-import { PlaceBid } from './PlaceBid';
+import { PlaceBid, retrieveCustomerRecord } from './PlaceBid';
 import { RetrieveCustomerAuctionsAndBids } from './CustomerDashboard';
 import { CustomerDashboardPage } from '../Components/CustomerDashboard';
 
@@ -117,14 +117,21 @@ export function loadPublishAssetPage()
 
 // Place Bid Page
 
-export function loadPlaceBidPage(event : any, auctionDetailsResponse : string, auctionIndex : Number)
+export function loadPlaceBidPage(event : any, auctionDetailsResponse : string, auctionIndex : number)
+{
+
+  retrieveCustomerRecord( auctionDetailsResponse, auctionIndex );
+
+}
+
+export function loadPlaceBidPageWithCustomerInfo(auctionDetailsResponse : string, auctionIndex : Number, customerRecord : string)
 {
   
   smartBidRoot.render(
     
     <StrictMode>
 
-      <PlaceBid auctionDetailsResponse = {auctionDetailsResponse} auctionIndex = {auctionIndex} />
+      <PlaceBid auctionDetailsResponse = {auctionDetailsResponse} auctionIndex = {auctionIndex} customerRecord = {customerRecord} />
       
     </StrictMode>
 

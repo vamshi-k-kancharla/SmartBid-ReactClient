@@ -300,3 +300,89 @@ export const placeQuickBidTermsCSS =
 }
 
 
+export const contactSellerDialogCSS =
+{
+
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: '400px',
+  //height: '100%',
+  borderRadius: '8px',
+
+}
+
+export const contactSellerCloseButtonCSS =
+{
+
+  borderRadius: '4px',
+  border: '1px solid #bc987e',
+  backgroundColor: '#bc987e',
+  width: '24px'
+
+}
+
+export const contactSellerModalHeadingCSS =
+{
+
+  fontFamily: 'Poppins',
+  fontWeight: '600',
+  fontStyle: 'SemiBold',
+  fontSize: '18px',
+  lineHeight: '27px',
+  verticalAlign: 'middle',
+  color: '#A16207',
+
+}
+
+export const contactSellerModalBodyContentCSS =
+{
+
+  paddingLeft: '48px',
+  paddingTop: '6px',
+  paddingBottom: '6px',
+
+}
+
+export const contactSellerModalLabelCSS =
+{
+
+  fontFamily: 'Poppins',
+  fontWeight: '500',
+  fontStyle: 'Medium',
+  fontSize: '14px',
+  lineHeight: '21px',
+  verticalAlign: 'middle',
+  color: '#4B5563',
+
+}
+
+export const contactSellerModalDetailCSS =
+{
+
+  fontFamily: 'Poppins',
+  fontWeight: '550',
+  fontStyle: 'Medium',
+  fontSize: '14px',
+  lineHeight: '21px',
+  verticalAlign: 'middle',
+  color: '#560319',
+
+}
+
+export const contactSellerModalBodyCSS =
+{
+
+  paddingTop: '15px',
+  paddingBottom: '15px',
+
+}
+
+export const contactSellerHeaderFooterCSS =
+{
+
+  backgroundColor: '#FCFCFC',
+
+}
+
+

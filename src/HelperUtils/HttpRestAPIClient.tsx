@@ -178,3 +178,53 @@ export async function sendHttpRequestToSmartBidServerWithCallbackFunction( urlPa
     console.log("Successfully sent the http request ");
 }
 
+
+export async function sendHttpRequestToSmartBidServerWithCallbackFunctionObject( urlParamsString : string, successCallbackFunction : any,
+    failureCallbackFunction : any, queryResponseObjectIndexString : string, queryResponseObject : any
+)
+{
+    let xmlHttpRequest = new XMLHttpRequest();
+    let httpRequestURL = httpRequestURLPrefix;
+
+    auctionDetailsResponse = "";
+
+    httpRequestURL += urlParamsString;
+
+    console.log("Sending Http request (URL Encoded): httpRequestURL = " + httpRequestURL);
+
+    xmlHttpRequest.open('GET', httpRequestURL);
+    xmlHttpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+    xmlHttpRequest.onload = () => {
+
+        console.log("First time load of xmlHttpRequest");
+
+        if ( xmlHttpRequest.status == 200 )
+        {
+            console.log("Successfully completed the request = " + xmlHttpRequest.responseText);
+
+            queryResponseObject[queryResponseObjectIndexString] = xmlHttpRequest.responseText;
+            
+            successCallbackFunction( queryResponseObject );
+        }
+        else
+        {
+            console.log("Error occured while sending the request = " + xmlHttpRequest.status);
+            console.log("Error Text = " + xmlHttpRequest.statusText);
+
+            failureCallbackFunction(xmlHttpRequest.responseText);
+        }
+    };
+
+    xmlHttpRequest.onerror = () => {
+
+        console.log("XML http request has encountered an error");
+
+        failureCallbackFunction(xmlHttpRequest.statusText);
+    }
+
+    xmlHttpRequest.send();
+
+    console.log("Successfully sent the http request ");
+}
+

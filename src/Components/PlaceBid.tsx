@@ -14,7 +14,15 @@ import { backToDashboardButtonCSS, backToDashboardPaddingCSS, placeBidDisplayCon
   quickBidContentCSS,
   textInputCSS,
   placeBidButtonCSS, 
-  placeQuickBidTermsCSS} from '../StyleSheets/PlaceBidSheet';
+  placeQuickBidTermsCSS,
+  contactSellerDialogCSS,
+  contactSellerCloseButtonCSS,
+  contactSellerModalHeadingCSS,
+  contactSellerModalBodyContentCSS,
+  contactSellerModalLabelCSS,
+  contactSellerModalDetailCSS,
+  contactSellerModalBodyCSS,
+  contactSellerHeaderFooterCSS} from '../StyleSheets/PlaceBidSheet';
 
 import { HeaderLoggedIn } from './HeaderLoggedIn';
 
@@ -40,7 +48,7 @@ export function PlaceBidPage(props:any) {
 
         <div className='col-lg-8' style={placeBidPaneCSS}>
 
-          <PlaceBidPane auctionDetailsResponse = {props.auctionDetailsResponse} auctionIndex = {props.auctionIndex}/>
+          <PlaceBidPane auctionDetailsResponse = {props.auctionDetailsResponse} auctionIndex = {props.auctionIndex} customerRecord = {props.customerRecord} />
 
         </div>
 
@@ -75,6 +83,12 @@ export function PlaceBidPane(props:any) {
   let assetDescription = auctionDetailsArrayObject[auctionIndex].AssetDescription;
   let assetBiddingType = auctionDetailsArrayObject[auctionIndex].BiddingType;
 
+  let customerRecordObject = JSON.parse(props.customerRecord)
+
+  let sellerName = customerRecordObject[0].Name;
+  let sellerEmailId = customerRecordObject[0].EmailAddress;
+  let sellerMobileNumber = customerRecordObject[0].PhoneNumber;
+
   console.log("Image Source Path = " + imageSourcePath);
   
   return (
@@ -99,7 +113,7 @@ export function PlaceBidPane(props:any) {
 
             <div className = 'col-lg-3' style={contactSellerDivCSS}>
 
-              <button style={contactSellerButtonCSS}>contact seller</button>
+              <button style={contactSellerButtonCSS} data-toggle="modal" data-target="#contact_seller_modal">contact seller</button>
 
             </div>
 
@@ -137,6 +151,72 @@ export function PlaceBidPane(props:any) {
           <div style={{paddingTop:'30px'}}>
 
             <QuickBidPane assetAuctionPrice = {assetAuctionPrice} currentBidPrice = {assetCurrentBidPrice} assetId = {assetId} assetBiddingType = {assetBiddingType} />
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div id="contact_seller_modal" className="modal fade" style={contactSellerDialogCSS}>
+
+        <div className="modal-dialog">
+
+          <div className="modal-content">
+
+            <div className="modal-header" style={contactSellerHeaderFooterCSS}>
+
+              <div className='row'>
+
+                <div className='col-lg-2'></div>
+
+                <div className='col-lg-5' style={contactSellerModalHeadingCSS}>
+
+                    <p>Seller Contact Details</p>
+
+                </div>
+
+                <div className='col-lg-2'>
+
+                    <button data-dismiss='modal' style={contactSellerCloseButtonCSS}>X</button>
+
+                </div>
+
+              </div>
+              
+            </div>
+
+            <div className="modal-body" style={contactSellerModalBodyCSS}>
+
+              <div style={contactSellerModalBodyContentCSS}>
+
+                <span style={contactSellerModalLabelCSS}>Name :</span>
+                <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <span style={contactSellerModalDetailCSS}>{sellerName}</span>
+
+              </div>
+
+              <div style={contactSellerModalBodyContentCSS}> 
+                
+                <span style={contactSellerModalLabelCSS}>Phone Number :</span>
+                <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <span style={contactSellerModalDetailCSS}>+91-{sellerMobileNumber}</span>
+                
+              </div>
+              
+              <div style={contactSellerModalBodyContentCSS}> 
+                
+                <span style={contactSellerModalLabelCSS}>Email Id :</span>
+                <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <span style={contactSellerModalDetailCSS}>{sellerEmailId}</span>
+
+              </div>
+              
+            </div>
+
+            <div className="modal-footer" style={contactSellerHeaderFooterCSS}>
+              
+            </div>
 
           </div>
 

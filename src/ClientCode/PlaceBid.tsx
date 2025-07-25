@@ -1,7 +1,7 @@
 import { StrictMode } from 'react';
 
-import { sendHttpRequestToSmartBidServerWithCallbackFunction } from '../HelperUtils/HttpRestAPIClient'
-import { loadHomePage } from './Home';
+import { sendHttpRequestToSmartBidServerWithCallbackFunction, sendHttpRequestToSmartBidServerWithCallbackFunctionObject } from '../HelperUtils/HttpRestAPIClient'
+import { loadHomePage, loadPlaceBidPageWithCustomerInfo } from './Home';
 import { PlaceBidPage } from '../Components/PlaceBid';
 
 
@@ -11,7 +11,7 @@ export function PlaceBid(props : any) {
     
     <StrictMode>
 
-      <PlaceBidPage auctionDetailsResponse={props.auctionDetailsResponse} auctionIndex = {props.auctionIndex}/>
+      <PlaceBidPage auctionDetailsResponse={props.auctionDetailsResponse} auctionIndex = {props.auctionIndex}  customerRecord = {props.customerRecord} />
       
     </StrictMode>
 
@@ -73,4 +73,49 @@ function failureResponsePlaceQuickBid(httpStatusText:string)
   loadHomePage();
 }
 
+
+export async function retrieveCustomerRecord(auctionDetailsResponse : string, auctionIndex : number)
+{
+
+    let auctionDetailsArrayObject = JSON.parse(auctionDetailsResponse);
+    let sellerCustomerId = auctionDetailsArrayObject[auctionIndex].SellerCustomerId;
+
+    let retrieveCustomerRecordUrlString = "RetrieveCustomer?CustomerId=" + sellerCustomerId;
+    
+    console.log("placeQuickBid : bidPlaceRequestUrlString = " + retrieveCustomerRecordUrlString);
+
+    let auctionDetailsObject : {[index : string] : any} = {};
+
+    auctionDetailsObject["auctionDetailsResponse"] = auctionDetailsResponse;
+    auctionDetailsObject["auctionIndex"] = auctionIndex;
+
+    await sendHttpRequestToSmartBidServerWithCallbackFunctionObject( retrieveCustomerRecordUrlString, 
+      successResponseQueryCustomerRecord, failureResponseQueryCustomerRecord, "customerRecord", auctionDetailsObject );
+
+}
+
+function successResponseQueryCustomerRecord(auctionDetailsObject:{[index : string] : any})
+{
+  console.log("successResponseQueryCustomerRecord : " + auctionDetailsObject);
+
+  if( JSON.parse(auctionDetailsObject["customerRecord"]).length == 0 )
+  {
+
+    alert("Failed to retrieve seller customer record from server : No Customer record found");
+    loadHomePage();
+
+    return;
+  }
+
+  loadPlaceBidPageWithCustomerInfo(auctionDetailsObject["auctionDetailsResponse"], auctionDetailsObject["auctionIndex"], 
+    auctionDetailsObject["customerRecord"]);
+}
+
+function failureResponseQueryCustomerRecord(httpStatusText:string)
+{
+  console.log("failureResponseQueryCustomerRecord : " + httpStatusText);
+  alert("Failed to retrieve seller customer record from server : " + httpStatusText);
+
+  loadHomePage();
+}
 
