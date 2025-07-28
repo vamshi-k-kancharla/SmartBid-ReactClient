@@ -364,7 +364,7 @@ export function BackToDashboard() {
         <div className='row col-lg-12' style={backToDashboardPaddingCSS}>
           
           <button className="col-lg-3" style={backToDashboardButtonCSS} onClick={loadHomePage}> 
-            &larr;&nbsp;&nbsp; Back To Customer Dashboard
+            &larr;&nbsp;&nbsp;&nbsp;&nbsp; Back To Home Page
           </button>
 
         </div>

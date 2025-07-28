@@ -6,7 +6,7 @@ import { loadCustomerDashboardPage, loadCustomerDashboardPageWithAuctionsAndBids
 export function RetrieveCustomerAuctionsAndBids()
 {
 
-    let retrieveAuctionsRequestUrlString = "CustomerAuctionsAndBids?SellerCustomerId=59";
+    let retrieveAuctionsRequestUrlString = "CustomerAuctionsAndBids?SellerCustomerId=" + window.localStorage.getItem("CurrentUser_CustomerId");
     
     sendHttpRequestToSmartBidServerWithCallbackFunction( retrieveAuctionsRequestUrlString, successfulBidsAndAuctionsResponseFunction,
         failureBidsAndAuctionsResponseFunction

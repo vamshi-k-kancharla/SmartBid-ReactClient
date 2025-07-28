@@ -35,7 +35,7 @@ export async function placeQuickBid(minBidPrice:number, assetId: number)
     let bidDetailsObject : { [index:string] : any} = {};
 
     bidDetailsObject["assetId"] = assetId;
-    bidDetailsObject["customerId"] = 61;
+    bidDetailsObject["customerId"] = window.localStorage.getItem("CurrentUser_CustomerId");
     bidDetailsObject["bidPrice"] = yourBidPrice;
 
     let bidPlaceRequestUrlString = buildHttpRequestURLForBiddingData(bidDetailsObject);

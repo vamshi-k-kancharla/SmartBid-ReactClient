@@ -50,7 +50,9 @@ export async function submitAuctionAssetDetails(event:any)
       let inputFormData = createFormInputData(auctionAssetInputObject, 
           auctionAssetKeysForUpload);
 
-      inputFormData.append( "SellerCustomerId" , "59" );
+      let sellerCustomerIdInput = window.localStorage.getItem( "CurrentUser_CustomerId" );
+
+      inputFormData.append( "SellerCustomerId" , sellerCustomerIdInput! );
 
       // Upload files
       

@@ -13,6 +13,8 @@ import { RetrieveAuctions } from './AuctionDisplay';
 import { PlaceBid, retrieveCustomerRecord } from './PlaceBid';
 import { RetrieveCustomerAuctionsAndBids } from './CustomerDashboard';
 import { CustomerDashboardPage } from '../Components/CustomerDashboard';
+import { HeaderLoggedIn } from '../Components/HeaderLoggedIn';
+import { loginOnLoad } from './Login';
 
 
 // Render the Home Page
@@ -34,7 +36,9 @@ export async function loadHomePage()
     
     <StrictMode>
 
-      <Header />
+      { (window.localStorage.getItem("CurrentUser_LoggedIn") == 'true') ? 
+        ( <HeaderLoggedIn headerName="Home" /> ) : 
+        (<Header />) }
       <BiddingStyle />
       <br></br><br></br>
       <Footer />
@@ -51,7 +55,9 @@ export async function loadHomePageAuctionDetails(auctionDetailsResponseString: s
     
     <StrictMode>
 
-      <Header />
+      { (window.localStorage.getItem("CurrentUser_LoggedIn") == 'true') ? 
+        ( <HeaderLoggedIn headerName="Home" /> ) : 
+        (<Header />) }
       <AuctionDisplayWidgetHomePage auctionDetailsResponse = {auctionDetailsResponseString} />
       <BiddingStyle />
       <br></br><br></br>
@@ -69,7 +75,9 @@ export async function loadHomePageWithoutAuctionDetails()
     
     <StrictMode>
 
-      <Header />
+      { (window.localStorage.getItem("CurrentUser_LoggedIn") == 'true') ? 
+        ( <HeaderLoggedIn headerName="Home" /> ) : 
+        (<Header />) }
       <BiddingStyle />
       <br></br><br></br>
       <Footer />
@@ -101,6 +109,13 @@ export function loadSignUpPage()
 // PublishAsset Page
 
 export function loadPublishAssetPage()
+{
+
+  loginOnLoad(loadPublishAssetPageAfterLogin);
+
+}
+  
+export function loadPublishAssetPageAfterLogin( responseTextFromServer : string )
 {
   
   smartBidRoot.render(
@@ -142,6 +157,13 @@ export function loadPlaceBidPageWithCustomerInfo(auctionDetailsResponse : string
 // Customer Dashboard Page
 
 export function loadCustomerDashboardPage()
+{
+
+  loginOnLoad(loadCustomerDashboardPageAfterLogin);
+
+}
+
+export function loadCustomerDashboardPageAfterLogin()
 {
 
   RetrieveCustomerAuctionsAndBids();

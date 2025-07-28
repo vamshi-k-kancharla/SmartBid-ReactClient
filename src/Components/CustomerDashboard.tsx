@@ -17,7 +17,7 @@ export function CustomerDashboardPage(props:any) {
     <div>
 
       <div>
-        <HeaderLoggedIn headerName="Customer Dashboard" /> 
+        <HeaderLoggedIn headerName="Dashboard" /> 
       </div>
 
       <div className='row' style={{width:"99%"}}>

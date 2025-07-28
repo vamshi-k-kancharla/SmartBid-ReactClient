@@ -1,6 +1,6 @@
 
 import { navCSS, smartCSS, bidCSS, signUpCSS, loginCSS } from '../StyleSheets/HeaderStyleSheet';
-import { loadSignUpPage, loadPublishAssetPage, loadCustomerDashboardPage } from '../ClientCode/Home';
+import { loadSignUpPage, loadPublishAssetPage, loadCustomerDashboardPage, loadHomePage } from '../ClientCode/Home';
 
 import { LoginModal } from './LoginModal';
 
@@ -24,10 +24,7 @@ export function Header() {
 
               <ul className='nav row'>
 
-                  <li className="col-lg-3"><a href="./HomePage.html">Home</a></li>
-                  <li className="col-lg-3"><a href="#" onClick={loadPublishAssetPage}>Publish Auctions</a></li> 
-                  <li className="col-lg-3"><a href="#" onClick={loadCustomerDashboardPage}>Customer Dashboard</a></li> 
-                  <li className="col-lg-3"><a href="./CloseAuction.html">Close Auctions</a></li>
+                  <li className="col-lg-3"><a href="#" onClick={loadHomePage}>Home</a></li>
 
               </ul>
 

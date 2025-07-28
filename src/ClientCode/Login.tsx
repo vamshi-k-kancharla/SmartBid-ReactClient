@@ -39,6 +39,8 @@ function successResponseUserAuthFunction( responseTextFromServer : string )
     window.localStorage.setItem("CurrentUser_EmailAddress", userAuthResponseObject[0].EmailAddress);
     window.localStorage.setItem("CurrentUser_PhoneNumber", userAuthResponseObject[0].PhoneNumber);
 
+    window.localStorage.setItem("CurrentUser_LoggedIn", "true");
+
     console.log("EmailAddress in cache.. = " + window.localStorage.getItem("CurrentUser_EmailAddress"));
 
     loadHomePage();
@@ -47,6 +49,35 @@ function successResponseUserAuthFunction( responseTextFromServer : string )
 function failureResponseUserAuthFunction()
 {
     alert("User authentication failed");
+    loadHomePage();
+}
+
+export function logoutTheUser()
+{
+    window.localStorage.clear();
+
+    loadHomePage();
+}
+
+export async function loginOnLoad( successResponseUserAuthFunctionOnLoad : any )
+{
+
+    let authenticateUserObject : { [index : string] : any } = {};
+
+    authenticateUserObject["EmailAddress"] = window.localStorage.getItem("CurrentUser_EmailAddress");
+    authenticateUserObject["PasswordCode"] = window.localStorage.getItem("CurrentUser_Password");
+
+    console.log("Sending JSON based Http Login Request to Server : ");
+
+    sendHttpJsonRequestToSmartBidServerWithCallback( "AuthenticateUser", authenticateUserObject,
+        successResponseUserAuthFunctionOnLoad, failureResponseUserAuthFunctionOnLoad );
+}
+
+function failureResponseUserAuthFunctionOnLoad()
+{
+    alert("User authentication failed on load");
+    window.localStorage.clear();
+
     loadHomePage();
 }
 
