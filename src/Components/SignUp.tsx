@@ -1,6 +1,11 @@
 
-import { leftPaneCSS, rightPaneCSS, smartCSS, bidCSS, getStartedCSS, discoverCSS, allInOneCSS, formLabelCSS, formLabelMustCSS, textInputDivCSS, textInputCSS, submitButtonCSS, submitButtonDivCSS, googleButtonCSS, appleButtonCSS, loginAnchorCSS } from '../StyleSheets/SignUpStyleSheet';
+import { leftPaneCSS, rightPaneCSS, smartCSS, bidCSS, getStartedCSS, discoverCSS, allInOneCSS, formLabelCSS, formLabelMustCSS, 
+  textInputDivCSS, textInputCSS, submitButtonCSS, submitButtonDivCSS, googleButtonCSS, appleButtonCSS, loginAnchorCSS, 
+  cancelButtonSignUpCSS,
+  submitCancelDivCSS} 
+  from '../StyleSheets/SignUpStyleSheet';
 import { submitSignUpDetails } from '../ClientCode/SignUp';
+import { loadHomePage } from '../ClientCode/Home';
 
 export function SignUpPage() {
   
@@ -253,15 +258,25 @@ export function SignUpRightPane() {
   
           </div>
 
-          <br/><br/>
+          <br/><br/><br/>
 
           <div className="row" style={submitButtonDivCSS}>
 
-              <button type="submit" className="col-lg-12" style={submitButtonCSS}>Create An Account</button>
+              <div className='col-lg-6' style={submitCancelDivCSS}>
+  
+                <button type="submit" className='col-lg-12' style={submitButtonCSS}>Create An Account</button>
+
+              </div>
+  
+              <div className='col-lg-6' style={submitCancelDivCSS}>
+  
+                <button className='col-lg-12' style={cancelButtonSignUpCSS} onClick={loadHomePage}>Cancel</button>
+
+              </div>
 
           </div>
 
-          <br/><br/>
+          <br/><br/><br/>
 
           <div className="row" style={submitButtonDivCSS}>
 

@@ -26,7 +26,7 @@ export const leftPaneCSS =
   borderRadius: '8px',
   
   paddingTop: '220px',
-  paddingBottom: '315px',
+  paddingBottom: '360px',
   paddingLeft: '40px',
   
   backgroundColor: '#4B5563',
@@ -144,6 +144,14 @@ export const submitButtonCSS =
 
 }
 
+export const cancelButtonSignUpCSS =
+{
+
+  ...submitButtonCSS,
+  backgroundColor : '#ff4500'
+
+}
+
 export const submitButtonDivCSS =
 {
 
@@ -187,5 +195,13 @@ export const loginAnchorCSS =
   fontSize: '16px',
   lineHeight: '100%',
   letterSpacing: '2%',
+
+}
+
+export const submitCancelDivCSS =
+{
+
+  paddingLeft : '24px',
+  paddingRight : '24px'
 
 }

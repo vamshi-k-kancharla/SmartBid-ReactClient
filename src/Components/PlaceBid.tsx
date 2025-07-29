@@ -82,6 +82,7 @@ export function PlaceBidPane(props:any) {
   let imageSourcePath = httpImagesRequestURLPrefix + "asset_" + assetId + "_file_0.jpg";
   let assetDescription = auctionDetailsArrayObject[auctionIndex].AssetDescription;
   let assetBiddingType = auctionDetailsArrayObject[auctionIndex].BiddingType;
+  let sellerCustomerId = auctionDetailsArrayObject[auctionIndex].SellerCustomerId;
 
   let customerRecordObject = JSON.parse(props.customerRecord)
 
@@ -150,7 +151,8 @@ export function PlaceBidPane(props:any) {
 
           <div style={{paddingTop:'30px'}}>
 
-            <QuickBidPane assetAuctionPrice = {assetAuctionPrice} currentBidPrice = {assetCurrentBidPrice} assetId = {assetId} assetBiddingType = {assetBiddingType} />
+            <QuickBidPane assetAuctionPrice = {assetAuctionPrice} currentBidPrice = {assetCurrentBidPrice} 
+              assetId = {assetId} assetBiddingType = {assetBiddingType} sellerCustomerId = {sellerCustomerId} />
 
           </div>
 
@@ -342,7 +344,7 @@ export function QuickBidPane(props : any) {
 
       <div style={{paddingTop:'25px', paddingLeft:'36px'}} className='row'>
         
-        <button className="col-lg-10" style={placeBidButtonCSS} onClick={() => placeQuickBid(minBidPrice, props.assetId)}>Place Quick Bid</button>
+        <button className="col-lg-10" style={placeBidButtonCSS} onClick={() => placeQuickBid(minBidPrice, props.assetId, props.sellerCustomerId)}>Place Quick Bid</button>
 
       </div>
 

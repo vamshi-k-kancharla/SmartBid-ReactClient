@@ -48,7 +48,7 @@ function successResponseUserAuthFunction( responseTextFromServer : string )
 
 function failureResponseUserAuthFunction()
 {
-    alert("User authentication failed");
+    alert("User authentication failed..Please login / Re-login");
     loadHomePage();
 }
 
@@ -75,7 +75,7 @@ export async function loginOnLoad( successResponseUserAuthFunctionOnLoad : any )
 
 function failureResponseUserAuthFunctionOnLoad()
 {
-    alert("User authentication failed on load");
+    alert("User authentication failed on load..Please login / Re-login");
     window.localStorage.clear();
 
     loadHomePage();

@@ -25,6 +25,8 @@ export function Header() {
               <ul className='nav row'>
 
                   <li className="col-lg-3"><a href="#" onClick={loadHomePage}>Home</a></li>
+                  <li className="col-lg-3"><a href="#" onClick={loadPublishAssetPage}>Publish Auctions</a></li> 
+                  <li className="col-lg-4"><a href="#" onClick={loadCustomerDashboardPage}>Customer Dashboard</a></li>
 
               </ul>
 

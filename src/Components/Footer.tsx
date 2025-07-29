@@ -30,11 +30,11 @@ export function Footer() {
 
                 <p style={companyHeadingCSS}>Company</p>
 
-                <div style={companyLinkCSS}><a href="./HomePage.html">About US</a></div>
-                <div style={companyLinkCSS}><a href="./PublishAuction.html">Terms & Conditions</a></div> 
-                <div style={companyLinkCSS}><a href="./ViewAuction.html">Contact US</a></div>
-                <div style={companyLinkCSS}><a href="./CloseAuction.html">Rate US</a></div>
-                <div style={companyLinkCSS}><a href="./CloseAuction.html">Locations</a></div>
+                <div style={companyLinkCSS}><a href="#">About US</a></div>
+                <div style={companyLinkCSS}><a href="#">Terms & Conditions</a></div> 
+                <div style={companyLinkCSS}><a href="#">Contact US</a></div>
+                <div style={companyLinkCSS}><a href="#">Rate US</a></div>
+                <div style={companyLinkCSS}><a href="#">Locations</a></div>
 
               </div>
 
@@ -49,11 +49,11 @@ export function Footer() {
 
                 <p style={companyHeadingCSS}>Explore</p>
 
-                <div style={companyLinkCSS}><a href="./HomePage.html">Find An Agent</a></div>
-                <div style={companyLinkCSS}><a href="./PublishAuction.html">Find A Builder</a></div> 
-                <div style={companyLinkCSS}><a href="./ViewAuction.html">Home Loans</a></div>
-                <div style={companyLinkCSS}><a href="./CloseAuction.html">Plot Loans</a></div>
-                <div style={companyLinkCSS}><a href="./CloseAuction.html">Agricultural Lands</a></div>
+                <div style={companyLinkCSS}><a href="#">Find An Agent</a></div>
+                <div style={companyLinkCSS}><a href="#">Find A Builder</a></div> 
+                <div style={companyLinkCSS}><a href="#">Home Loans</a></div>
+                <div style={companyLinkCSS}><a href="#">Plot Loans</a></div>
+                <div style={companyLinkCSS}><a href="#">Agricultural Lands</a></div>
 
               </div>
 

@@ -135,7 +135,18 @@ export function loadPublishAssetPageAfterLogin( responseTextFromServer : string 
 export function loadPlaceBidPage(event : any, auctionDetailsResponse : string, auctionIndex : number)
 {
 
-  retrieveCustomerRecord( auctionDetailsResponse, auctionIndex );
+  window.localStorage.setItem( "PlaceBid_Current_AuctionResponse", auctionDetailsResponse );
+  window.localStorage.setItem( "PlaceBid_Current_AuctionIndex", String(auctionIndex) );
+
+  loginOnLoad(loadPlaceBidPageAfterLogin);
+
+}
+
+export function loadPlaceBidPageAfterLogin( responseTextFromServer : string )
+{
+
+  retrieveCustomerRecord( window.localStorage.getItem("PlaceBid_Current_AuctionResponse")!, 
+    Number(window.localStorage.getItem("PlaceBid_Current_AuctionIndex")) );
 
 }
 

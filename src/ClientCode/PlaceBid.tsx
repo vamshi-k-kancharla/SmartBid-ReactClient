@@ -19,12 +19,18 @@ export function PlaceBid(props : any) {
 
 }
 
-export async function placeQuickBid(minBidPrice:number, assetId: number)
+export async function placeQuickBid(minBidPrice:number, assetId: number, sellerCustomerId: number)
 {
 
-    console.log("placeQuickBid To Server : minBidPrice = " + minBidPrice);
+    console.log("placeQuickBid To Server : minBidPrice = " + minBidPrice + " , sellerCustomerId = " + sellerCustomerId);
 
     let yourBidPrice = (document.getElementById("id_quick_bid") as HTMLFormElement).value;
+
+    if( Number(sellerCustomerId) == Number(window.localStorage.getItem("CurrentUser_CustomerId")) )
+    {
+        alert("Self Bidding of Auction is restricted. Buyer should be different from the seller");
+        return;
+    }
 
     if( yourBidPrice == "" || Number(yourBidPrice) <= Number(minBidPrice) )
     {
