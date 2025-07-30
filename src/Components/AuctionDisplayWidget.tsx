@@ -50,9 +50,9 @@ export function AuctionDisplayWidget(props: any) {
           
         </div>
 
-        { ( assetBiddingType.toLocaleLowerCase() == 'secretive' ) ?
-          ( <div style={currentBidDivCSS}><span>Current Bid : </span>********</div> ) :
-          ( <div style={currentBidDivCSS}><span>Current Bid : </span>&#8377;&nbsp;{assetCurrentBidPrice}</div> )
+        { ( assetBiddingType == null || assetBiddingType == undefined || assetBiddingType.toLocaleLowerCase() == 'open' ) ?
+          ( <div style={currentBidDivCSS}><span>Current Bid : </span>&#8377;&nbsp;{assetCurrentBidPrice}</div> ) :
+          ( <div style={currentBidDivCSS}><span>Current Bid : </span>********</div> )
         }
 
         <div className="row" style={placeBidDivCSS}>
@@ -73,6 +73,9 @@ export function AuctionDisplayWidget(props: any) {
 
 export function AuctionDisplayWidgetHomePage(props: any) {
 
+  let totalNumberOfAuctions = JSON.parse(props.auctionDetailsResponse).length;
+  let currentPageAuctionBase = 0;
+
   return (
 
     <div>
@@ -81,25 +84,37 @@ export function AuctionDisplayWidgetHomePage(props: any) {
 
         <div className="col-lg-3" style={auctionDisplayContentDivCSS}> 
 
-          <AuctionDisplayWidget auctionDetailsResponse = {props.auctionDetailsResponse} auctionDetailsIndex = {0} />
+          { ( currentPageAuctionBase + 0 < totalNumberOfAuctions ) ?
+            ( <AuctionDisplayWidget auctionDetailsResponse = {props.auctionDetailsResponse} auctionDetailsIndex = {currentPageAuctionBase + 0} /> ) :
+            (<div/>)
+          }
 
         </div>
 
         <div className="col-lg-3" style={auctionDisplayContentDivCSS}> 
 
-          <AuctionDisplayWidget auctionDetailsResponse = {props.auctionDetailsResponse} auctionDetailsIndex = {1} />
+          { ( currentPageAuctionBase + 1 < totalNumberOfAuctions ) ?
+            ( <AuctionDisplayWidget auctionDetailsResponse = {props.auctionDetailsResponse} auctionDetailsIndex = {currentPageAuctionBase + 1} /> ) :
+            (<div/>)
+          }
 
         </div>
 
         <div className="col-lg-3" style={auctionDisplayContentDivCSS}> 
 
-          <AuctionDisplayWidget auctionDetailsResponse = {props.auctionDetailsResponse} auctionDetailsIndex = {2} />
+          { ( currentPageAuctionBase + 2 < totalNumberOfAuctions ) ?
+            ( <AuctionDisplayWidget auctionDetailsResponse = {props.auctionDetailsResponse} auctionDetailsIndex = {currentPageAuctionBase + 2} /> ) :
+            (<div/>)
+          }
 
         </div>
 
         <div className="col-lg-3" style={auctionDisplayContentDivCSS}> 
 
-          <AuctionDisplayWidget auctionDetailsResponse = {props.auctionDetailsResponse} auctionDetailsIndex = {3} />
+          { ( currentPageAuctionBase + 3 < totalNumberOfAuctions ) ?
+            ( <AuctionDisplayWidget auctionDetailsResponse = {props.auctionDetailsResponse} auctionDetailsIndex = {currentPageAuctionBase + 3} /> ) :
+            (<div/>)
+          }
 
         </div>
 
@@ -109,25 +124,37 @@ export function AuctionDisplayWidgetHomePage(props: any) {
 
         <div className="col-lg-3" style={auctionDisplayContentDivCSS}> 
 
-          <AuctionDisplayWidget auctionDetailsResponse = {props.auctionDetailsResponse} auctionDetailsIndex = {4} />
+          { ( currentPageAuctionBase + 4 < totalNumberOfAuctions ) ?
+            ( <AuctionDisplayWidget auctionDetailsResponse = {props.auctionDetailsResponse} auctionDetailsIndex = {currentPageAuctionBase + 4} /> ) :
+            (<div/>)
+          }
 
         </div>
 
         <div className="col-lg-3" style={auctionDisplayContentDivCSS}> 
 
-          <AuctionDisplayWidget auctionDetailsResponse = {props.auctionDetailsResponse} auctionDetailsIndex = {5} />
+          { ( currentPageAuctionBase + 5 < totalNumberOfAuctions ) ?
+            ( <AuctionDisplayWidget auctionDetailsResponse = {props.auctionDetailsResponse} auctionDetailsIndex = {currentPageAuctionBase + 5} /> ) :
+            (<div/>)
+          }
 
         </div>
 
         <div className="col-lg-3" style={auctionDisplayContentDivCSS}> 
 
-          <AuctionDisplayWidget auctionDetailsResponse = {props.auctionDetailsResponse} auctionDetailsIndex = {6} />
+          { ( currentPageAuctionBase + 6 < totalNumberOfAuctions ) ?
+            ( <AuctionDisplayWidget auctionDetailsResponse = {props.auctionDetailsResponse} auctionDetailsIndex = {currentPageAuctionBase + 6} /> ) :
+            (<div/>)
+          }
 
         </div>
 
         <div className="col-lg-3" style={auctionDisplayContentDivCSS}> 
 
-          <AuctionDisplayWidget auctionDetailsResponse = {props.auctionDetailsResponse} auctionDetailsIndex = {7} />
+          { ( currentPageAuctionBase + 7 < totalNumberOfAuctions ) ?
+            ( <AuctionDisplayWidget auctionDetailsResponse = {props.auctionDetailsResponse} auctionDetailsIndex = {currentPageAuctionBase + 7} /> ) :
+            (<div/>)
+          }
 
         </div>
 

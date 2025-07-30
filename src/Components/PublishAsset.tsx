@@ -82,7 +82,7 @@ export function PublishAssetPane() {
 
           <div className="row">
 
-              <div  className="col-lg-6">
+              <div  className="col-lg-4">
 
                 <p className="col-lg-12 text-left" style={formLabelCSS}>Asset Type <span style={formLabelMustCSS}>*</span></p>
 
@@ -103,7 +103,25 @@ export function PublishAssetPane() {
 
               </div>
   
-              <div  className="col-lg-6">
+              <div  className="col-lg-4">
+
+                <p className="col-lg-12 text-left" style={formLabelCSS}>Bidding Type <span style={formLabelMustCSS}>*</span></p>
+
+                <div style={textInputDivCSS}>
+
+                  <select className="col-lg-12" style={textInputCSS} id="id_bidding_type">
+
+                    <option value = ''>Select Bidding Type</option>
+                    <option value = 'open'>open</option>
+                    <option value = 'secretive'>secretive</option>
+
+                  </select>
+
+                </div>
+
+              </div>
+  
+              <div  className="col-lg-4">
 
                 <p className="col-lg-12 text-left" style={formLabelCSS}>Minimum Auction Price <span style={formLabelMustCSS}>*</span></p>
 
@@ -246,29 +264,6 @@ export function PublishAssetPane() {
 
           <br/>
 
-
-          <div style={textInputDivCSS}>
-
-            <div className="row">
-
-                <p className="col-lg-12 text-left" style={formLabelCSS}>Asset Description</p>
-            
-            </div>
-
-            <div className="row">
-
-                <div  className="col-lg-12" style={textInputDivCSS}>
-    
-                  <textarea className="col-lg-12" style={textInputCSS} placeholder="Enter the full details of Asset" id="id_asset_description"/>
-
-                </div>
-            
-            </div>
-
-          </div>
-
-          <br/>
-
           <div className="row">
 
               <div className="col-lg-6">
@@ -296,6 +291,30 @@ export function PublishAssetPane() {
               </div>
   
           </div>
+
+          <br/>
+
+          <div style={textInputDivCSS}>
+
+            <div className="row">
+
+                <p className="col-lg-12 text-left" style={formLabelCSS}>Asset Description</p>
+            
+            </div>
+
+            <div className="row">
+
+                <div  className="col-lg-12" style={textInputDivCSS}>
+    
+                  <textarea className="col-lg-12" style={textInputCSS} placeholder="Enter the full details of Asset" id="id_asset_description"/>
+
+                </div>
+            
+            </div>
+
+          </div>
+
+          <br/>
 
           <br/><br/><br/>
 

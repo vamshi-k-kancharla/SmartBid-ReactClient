@@ -546,7 +546,7 @@ function returnIndividualAuctionDivPane( auctionDetailsResponse : Array<{[index 
 
   if ( assetStatus.toLocaleLowerCase() == 'open' )
   {
-    let closeAuctionDivPane = returnCloseAuctionDivPane(assetCurrentBidPrice, assetId);
+    let closeAuctionDivPane = returnCloseAuctionDivPane(assetCurrentBidPrice, assetId, auctionDetailsResponse, auctionIndex);
     myAuctionsDivPane.append(closeAuctionDivPane);
   }
 
@@ -706,7 +706,8 @@ function returnMyAuctionsStatusDivPane( auctionStatus : string ) : any {
 }
 
 
-function returnCloseAuctionDivPane( currentBidPrice : string, assetId: Number ) : any {
+function returnCloseAuctionDivPane( currentBidPrice : string, assetId: number, 
+  assetDetailsResponse : { [index : string] : any}, auctionIndex : number ) : any {
 
   let myAuctionsDivPane = document.createElement('div');
 
@@ -719,7 +720,7 @@ function returnCloseAuctionDivPane( currentBidPrice : string, assetId: Number ) 
   let closeAuctionButtonNode = document.createElement('button');
   closeAuctionButtonNode.innerHTML = "Close Auction";
 
-  closeAuctionButtonNode.onclick = () => closeAuction(currentBidPrice, assetId);
+  closeAuctionButtonNode.onclick = () => closeAuction(currentBidPrice, assetId, assetDetailsResponse, auctionIndex);
 
   closeAuctionButtonNode.style.paddingTop = '5px';
   closeAuctionButtonNode.style.paddingBottom = '5px';

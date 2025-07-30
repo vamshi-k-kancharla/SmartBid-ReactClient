@@ -30,8 +30,19 @@ export function failureBidsAndAuctionsResponseFunction( auctionsAndBidsResponseS
 
 // Close the auctions 
 
-export function closeAuction(currentBidPrice : string, assetId : Number)
+export function closeAuction(currentBidPrice : string, assetId : number, assetDetailsResponse : { [index : string] : any }, 
+    auctionIndex : number)
 {
+
+    if( assetDetailsResponse[auctionIndex].BidderCustomerId == null || assetDetailsResponse[auctionIndex].BidderCustomerId == undefined ||
+        assetDetailsResponse[auctionIndex].CurrentBidPrice == assetDetailsResponse[auctionIndex].MinAuctionPrice )
+    {
+
+        alert("There hasn't been any bid so far on this auction...Auction can't be closed");
+        return;
+        
+    }
+
     alert("Buyer & Seller have agreed to close the Auction for the price => " + currentBidPrice);
 
     let closeAuctionUrlSuffix = "CloseAuction?AssetId="+assetId;

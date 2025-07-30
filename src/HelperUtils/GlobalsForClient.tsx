@@ -17,11 +17,11 @@ export const userAuthItemsToBeRemovedFromCache = ["CurrentUser_Password", "Curre
 
 // Validate & Upload Asset Data
 
-export const auctionAssetUIIdsForUpload = ["id_asset_type", "id_min_auction_price", "id_address", "id_colony", "id_city", "id_state", 
+export const auctionAssetUIIdsForUpload = ["id_asset_type", "id_bidding_type", "id_min_auction_price", "id_address", "id_colony", "id_city", "id_state", 
         "id_country", "id_approval_type", "id_asset_size", "id_built_up_area", "id_asset_description", "id_min_no_of_bedrooms", 
         "id_min_no_of_bathrooms"];
 
-export const auctionAssetKeysForUpload = ["AssetType", "MinAuctionPrice", "Address", "Colony", "City", "State", 
+export const auctionAssetKeysForUpload = ["AssetType", "BiddingType", "MinAuctionPrice", "Address", "Colony", "City", "State", 
         "Country", "ApprovalType", "AssetSize", "BuiltUpArea", "AssetDescription", "AssetBedrooms", "AssetBathrooms"];
 
 
