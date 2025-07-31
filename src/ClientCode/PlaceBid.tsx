@@ -19,10 +19,10 @@ export function PlaceBid(props : any) {
 
 }
 
-export async function placeQuickBid(minBidPrice:number, assetId: number, sellerCustomerId: number)
+export async function placeQuickBid(minBidPrice:number, assetId: number, sellerCustomerId: number, biddingType : string)
 {
 
-    console.log("placeQuickBid To Server : minBidPrice = " + minBidPrice + " , sellerCustomerId = " + sellerCustomerId);
+    console.log("placeQuickBid To Server : minBidPrice = " + minBidPrice + " , sellerCustomerId = " + sellerCustomerId + " , biddingType = " + biddingType );
 
     let yourBidPrice = (document.getElementById("id_quick_bid") as HTMLFormElement).value;
 
@@ -43,6 +43,8 @@ export async function placeQuickBid(minBidPrice:number, assetId: number, sellerC
     bidDetailsObject["assetId"] = assetId;
     bidDetailsObject["customerId"] = window.localStorage.getItem("CurrentUser_CustomerId");
     bidDetailsObject["bidPrice"] = yourBidPrice;
+    bidDetailsObject["biddingType"] = ( biddingType == null || biddingType == undefined || biddingType.toLocaleLowerCase() == 'open' ) ?
+      'open' : 'secretive';
 
     let bidPlaceRequestUrlString = buildHttpRequestURLForBiddingData(bidDetailsObject);
     
@@ -58,7 +60,8 @@ function buildHttpRequestURLForBiddingData(bidDetailsObject : { [index:string] :
 {
     let bidDataUrlSuffix = "AddBid?AssetId="+bidDetailsObject.assetId+
     "&CustomerId="+bidDetailsObject.customerId+
-    "&BidPrice="+bidDetailsObject.bidPrice;
+    "&BidPrice="+bidDetailsObject.bidPrice +
+    "&BiddingType="+bidDetailsObject.biddingType ;
 
     return bidDataUrlSuffix;
 }
