@@ -48,7 +48,7 @@ export async function loadHomePage()
   );
 }
 
-export async function loadHomePageAuctionDetails(auctionDetailsResponseString: string)
+export async function loadHomePageAuctionDetails(auctionDetailsResponseString: string, currentAuctionDetailsPage : number)
 {
 
   smartBidRoot.render(
@@ -58,7 +58,7 @@ export async function loadHomePageAuctionDetails(auctionDetailsResponseString: s
       { (window.localStorage.getItem("CurrentUser_LoggedIn") == 'true') ? 
         ( <HeaderLoggedIn headerName="Home" /> ) : 
         (<Header />) }
-      <AuctionDisplayWidgetHomePage auctionDetailsResponse = {auctionDetailsResponseString} />
+      <AuctionDisplayWidgetHomePage auctionDetailsResponse = {auctionDetailsResponseString} currentAuctionDetailsPage = {currentAuctionDetailsPage} />
       <BiddingStyle />
       <br></br><br></br>
       <Footer />

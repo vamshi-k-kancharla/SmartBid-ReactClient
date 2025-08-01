@@ -133,3 +133,13 @@ export const imageFileDivCSS =
 
 }
 
+export const paginationAnchorCSS =
+{
+
+  paddingTop : '12px',
+  paddingBottom : '12px',
+  paddingLeft: '15px',
+  paddingRight: '15px'
+  
+}
+

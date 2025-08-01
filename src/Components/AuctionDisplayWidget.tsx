@@ -1,10 +1,12 @@
 
 import { auctionDisplayDivCSS, auctionDisplayContentDivCSS, contentHeadingDivCSS, contentLocationDivCSS, 
   minAuctionDivCSS, minAuctionSpanCSS, bedAndBathDivCSS, currentBidDivCSS, placeBidDivCSS, placeBidButtonCSS,
-  imageFileDivCSS } from "../StyleSheets/AuctionDisplayStyleSheet";
+  imageFileDivCSS, 
+  paginationAnchorCSS} from "../StyleSheets/AuctionDisplayStyleSheet";
 
 import { httpImagesRequestURLPrefix } from "../HelperUtils/GlobalsForClient";
 import { loadPlaceBidPage } from "../ClientCode/Home";
+import { changeTheActiveStatusOfPaginationList, renderPaginationListPane } from "../ClientCode/AuctionDisplay";
 
 
 export function AuctionDisplayWidget(props: any) {
@@ -74,7 +76,13 @@ export function AuctionDisplayWidget(props: any) {
 export function AuctionDisplayWidgetHomePage(props: any) {
 
   let totalNumberOfAuctions = JSON.parse(props.auctionDetailsResponse).length;
-  let currentPageAuctionBase = 0;
+  let currentPageAuctionBase = props.currentAuctionDetailsPage * 8;
+  let noOfAuctionPages = Math.floor( (totalNumberOfAuctions / 8) ) + ( (totalNumberOfAuctions % 8 == 0) ? 0 : 1 );
+
+  console.log("totalNumberOfAuctions = " + totalNumberOfAuctions + " , no of pages = " + Math.floor(totalNumberOfAuctions / 8) );
+  console.log("currentAuctionDetailsPage => " + props.currentAuctionDetailsPage);
+
+  changeTheActiveStatusOfPaginationList(props.currentAuctionDetailsPage, noOfAuctionPages);
 
   return (
 
@@ -159,6 +167,35 @@ export function AuctionDisplayWidgetHomePage(props: any) {
         </div>
 
       </div>
+
+      <br/>
+
+      <div className = 'row'>
+
+        <div className = 'col-lg-2'></div>
+
+        <div className="col-lg-8">
+
+          <ul className = 'pagination' id = 'auctionDisplay_PaginationList'>
+
+            <li className={(props.currentAuctionDetailsPage + 1 == 1) ? 'active' : ''}>
+              <a href="#" style={paginationAnchorCSS}>1</a>
+            </li>
+            
+            <li>
+              <a href="#" style={paginationAnchorCSS} onClick={() => renderPaginationListPane(props.auctionDetailsResponse, 
+                noOfAuctionPages, props.currentAuctionDetailsPage)}>Next Page</a>
+            </li>
+            
+          </ul>
+
+        </div>
+
+        <div className = 'col-lg-2'></div>
+
+      </div>
+
+      <br/><br/>
 
     </div>
 

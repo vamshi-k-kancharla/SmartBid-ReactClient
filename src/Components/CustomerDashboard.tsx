@@ -127,7 +127,7 @@ export function removeAllChildrenFromAuctionsBidsPane()
 
 export function renderMyBidsPane(customerBidsResponse : Array<{[index : string] : any}>) {
 
-  // Remove all the children from Auctions&Bids Plane
+  // Remove all the children from Auctions&Bids Pane
 
   removeAllChildrenFromAuctionsBidsPane();
 
