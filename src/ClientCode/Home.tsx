@@ -14,7 +14,8 @@ import { PlaceBid, retrieveCustomerRecord } from './PlaceBid';
 import { RetrieveCustomerAuctionsAndBids } from './CustomerDashboard';
 import { CustomerDashboardPage } from '../Components/CustomerDashboard';
 import { HeaderLoggedIn } from '../Components/HeaderLoggedIn';
-import { loginOnLoad } from './Login';
+import { Login, loginOnLoad } from './Login';
+import { httpImagesRequestURLPrefix } from '../HelperUtils/GlobalsForClient';
 
 
 // Render the Home Page
@@ -29,6 +30,8 @@ if( container == undefined || smartBidRoot == undefined )
 
 export async function loadHomePage()
 {
+
+  console.log("Home Page : Image Source Path = " + httpImagesRequestURLPrefix);
 
   RetrieveAuctions();
   

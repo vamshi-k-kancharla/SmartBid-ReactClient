@@ -11,6 +11,8 @@ import { changeTheActiveStatusOfPaginationList, renderPaginationListPane } from 
 
 export function AuctionDisplayWidget(props: any) {
 
+  console.log("Image Source Path URL = " + httpImagesRequestURLPrefix);
+
   let auctionDetailsArrayObject = JSON.parse(props.auctionDetailsResponse);
   let auctionIndex = props.auctionDetailsIndex;
 
