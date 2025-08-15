@@ -16,6 +16,7 @@ import { CustomerDashboardPage } from '../Components/CustomerDashboard';
 import { HeaderLoggedIn } from '../Components/HeaderLoggedIn';
 import { Login, loginOnLoad } from './Login';
 import { httpImagesRequestURLPrefix } from '../HelperUtils/GlobalsForClient';
+import { AboutUSPage } from '../Components/AboutUS';
 
 
 // Render the Home Page
@@ -197,6 +198,30 @@ export function loadCustomerDashboardPageWithAuctionsAndBids(auctionsAndBidsResp
 
   );
 
+}
+
+
+// AboutUS Page
+
+export async function loadAboutUSPage()
+{
+
+  console.log("Loading About US Page");
+
+  smartBidRoot.render(
+    
+    <StrictMode>
+
+      { (window.localStorage.getItem("CurrentUser_LoggedIn") == 'true') ? 
+        ( <HeaderLoggedIn headerName="About US" /> ) : 
+        (<Header />) }
+      <AboutUSPage />
+      <br></br><br></br>
+      <Footer />
+      
+    </StrictMode>
+
+  );
 }
 
 
