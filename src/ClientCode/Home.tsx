@@ -17,6 +17,7 @@ import { HeaderLoggedIn } from '../Components/HeaderLoggedIn';
 import { Login, loginOnLoad } from './Login';
 import { httpImagesRequestURLPrefix } from '../HelperUtils/GlobalsForClient';
 import { AboutUSPage } from '../Components/AboutUS';
+import { ContactUSPage } from '../Components/ContactUS';
 
 
 // Render the Home Page
@@ -206,8 +207,6 @@ export function loadCustomerDashboardPageWithAuctionsAndBids(auctionsAndBidsResp
 export async function loadAboutUSPage()
 {
 
-  console.log("Loading About US Page");
-
   smartBidRoot.render(
     
     <StrictMode>
@@ -223,6 +222,28 @@ export async function loadAboutUSPage()
 
   );
 }
+
+// ContactUS Page
+
+export async function loadContactUSPage()
+{
+
+  smartBidRoot.render(
+    
+    <StrictMode>
+
+      { (window.localStorage.getItem("CurrentUser_LoggedIn") == 'true') ? 
+        ( <HeaderLoggedIn headerName="Contact US" /> ) : 
+        (<Header />) }
+      <ContactUSPage />
+      <br></br><br></br>
+      <Footer />
+      
+    </StrictMode>
+
+  );
+}
+
 
 
 

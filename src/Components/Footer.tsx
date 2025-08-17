@@ -1,5 +1,5 @@
 
-import { loadAboutUSPage } from '../ClientCode/Home';
+import { loadAboutUSPage, loadContactUSPage } from '../ClientCode/Home';
 import {navCSS,smartCSS, bidCSS, footerSubHeadingCSS, footerSubHeading2CSS, companyHeadingCSS, companyLinkCSS, reserveRightsCSS} from '../StyleSheets/FooterStyleSheet';
 
 export function Footer() {
@@ -32,8 +32,8 @@ export function Footer() {
                 <p style={companyHeadingCSS}>Company</p>
 
                 <div style={companyLinkCSS}><a href="#" onClick={loadAboutUSPage}>About US</a></div>
-                <div style={companyLinkCSS}><a href="#">Terms & Conditions</a></div> 
-                <div style={companyLinkCSS}><a href="#">Contact US</a></div>
+                <div style={companyLinkCSS}><a href="#">Terms & Conditions</a></div>
+                <div style={companyLinkCSS}><a href="#" onClick={loadContactUSPage}>Contact US</a></div>
                 <div style={companyLinkCSS}><a href="#">Rate US</a></div>
                 <div style={companyLinkCSS}><a href="#">Locations</a></div>
 

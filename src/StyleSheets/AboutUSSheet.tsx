@@ -1,14 +1,4 @@
 
-
-export const placeBidPaneCSS =
-{
-
-  padding: '20px',
-  borderRadius: '8px',
-  backgroundColor: '#FFFFFF',
-
-}
-
 export const aboutUSHeadingCSS =
 {
 

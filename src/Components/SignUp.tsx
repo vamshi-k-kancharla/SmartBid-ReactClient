@@ -112,7 +112,7 @@ export function SignUpRightPane() {
 
                 <div  className="col-lg-12" style={textInputDivCSS}>
     
-                  <input type="text" className="col-lg-12" style={textInputCSS} placeholder="Enter Email" id="id_email"/>
+                  <input type="email" className="col-lg-12" style={textInputCSS} placeholder="Enter Email" id="id_email"/>
 
                 </div>
 

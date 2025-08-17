@@ -33,3 +33,9 @@ export const customerUIIdsForUpload = ["id_name", "id_phone_number", "id_email",
 export const customerObjectKeysForUpload = ["Name", "PhoneNumber", "EmailAddress", "UserType", "Country", "State", 
         "City", "Address", "Password", "PasswordReentry"];
 
+
+// Contact US Data
+
+export const notificationEmailAddress = "smartbid.notification@gmail.com";
+
+export const mobileNumberContactUS = "+91-7306004129";
