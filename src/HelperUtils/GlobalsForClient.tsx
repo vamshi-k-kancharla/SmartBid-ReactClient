@@ -39,3 +39,6 @@ export const customerObjectKeysForUpload = ["Name", "PhoneNumber", "EmailAddress
 export const notificationEmailAddress = "smartbid.notification@gmail.com";
 
 export const mobileNumberContactUS = "+91-7306004129";
+
+export const feedbackObjectKeysForUpload = ["CustomerName", "EmailAddress", "Subject", "Message"];
+

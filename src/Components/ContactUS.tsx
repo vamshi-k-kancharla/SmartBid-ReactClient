@@ -1,4 +1,5 @@
 
+import { submitContactUSFeedback } from "../ClientCode/ContactUS";
 import { httpImagesRequestURLPrefix, mobileNumberContactUS, notificationEmailAddress } from "../HelperUtils/GlobalsForClient";
 import { contactInfoContentCSS, contactInfoHeadingCSS, contactInfoImageCSS, getInTouchContentCSS, getInTouchDivCSS, getInTouchHeadingCSS, inputTextAreaContactUSCSS, inputTextBoxContactUSCSS, sendMessageSubmitButtonCSS } from "../StyleSheets/ContactUSSheet";
 
@@ -53,7 +54,7 @@ export function ContactUSPage() {
 
             <div style={{paddingBottom : '70px', paddingTop : '70px'}}>
 
-              <button type="submit" className="col-lg-10" style={sendMessageSubmitButtonCSS} id="id_sendMessage">Send Message</button>
+              <button type="submit" className="col-lg-10" style={sendMessageSubmitButtonCSS} id="id_sendMessage" onClick={(event) => submitContactUSFeedback(event)}>Send Message</button>
 
             </div>
 
