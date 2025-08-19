@@ -56,6 +56,14 @@ export const resetPasswordContentCSS =
 
 }
 
+export const passwordLengthContentCSS =
+{
+
+  ...resetPasswordContentCSS,
+  color: '#808080',
+
+}
+
 export const inputTextBoxPasswordResetCSS =
 {
 
