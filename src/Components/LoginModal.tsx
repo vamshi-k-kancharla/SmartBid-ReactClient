@@ -1,6 +1,6 @@
 
 import { loginModalDialogCSS, welcomeBackCSS, welcomeBackSubHeadingCSS, rememberMeCSS, forgotPasswordCSS, loginButtonCSS, dontHaveAccountCSS, closeButtonCSS} from '../StyleSheets/LoginModal';
-import { loadSignUpPage } from '../ClientCode/Home';
+import { loadResetPasswordPage, loadSignUpPage } from '../ClientCode/Home';
 
 import { formLabelCSS, formLabelMustCSS, textInputCSS, textInputDivCSS } from '../StyleSheets/SignUpStyleSheet';
 import { Login } from '../ClientCode/Login';
@@ -72,7 +72,7 @@ export function LoginModal()
 
               <div className="col-lg-4">
 
-                <a href='#' style={forgotPasswordCSS}>Forgot Password ?</a>
+                <a href='#' style={forgotPasswordCSS} data-dismiss="modal" onClick={loadResetPasswordPage}>Forgot Password ?</a>
 
               </div>
 

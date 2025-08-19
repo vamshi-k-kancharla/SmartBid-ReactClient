@@ -18,6 +18,7 @@ import { Login, loginOnLoad } from './Login';
 import { httpImagesRequestURLPrefix } from '../HelperUtils/GlobalsForClient';
 import { AboutUSPage } from '../Components/AboutUS';
 import { ContactUSPage } from '../Components/ContactUS';
+import { EnterOTPPage, PasswordResetPage } from '../Components/PasswordReset';
 
 
 // Render the Home Page
@@ -243,6 +244,45 @@ export async function loadContactUSPage()
 
   );
 }
+
+
+// Password Reset Pages
+
+export async function loadResetPasswordPage()
+{
+
+  smartBidRoot.render(
+    
+    <StrictMode>
+
+      <Header />
+      <PasswordResetPage />
+      <br></br><br></br>
+      <Footer />
+      
+    </StrictMode>
+
+  );
+}
+
+export async function loadEnterOTPPage()
+{
+
+  smartBidRoot.render(
+    
+    <StrictMode>
+
+      <Header />
+      <EnterOTPPage />
+      <br></br><br></br>
+      <Footer />
+      
+    </StrictMode>
+
+  );
+}
+
+
 
 
 

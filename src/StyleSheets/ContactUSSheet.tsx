@@ -106,3 +106,4 @@ export const contactInfoImageCSS =
   width: '50px',
 
 }
+
