@@ -33,6 +33,8 @@ export const customerUIIdsForUpload = ["id_name", "id_phone_number", "id_email",
 export const customerObjectKeysForUpload = ["Name", "PhoneNumber", "EmailAddress", "UserType", "Country", "State", 
         "City", "Address", "Password", "PasswordReentry"];
 
+export const customerObjectKeysForPasswordReset = ["EmailAddress"];
+
 
 // Contact US Data
 

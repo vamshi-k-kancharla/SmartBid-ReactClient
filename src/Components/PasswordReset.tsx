@@ -1,6 +1,7 @@
 
 
-import { loadEnterOTPPage, loadResetPasswordSuccessfulPage, loadSetNewPasswordPage } from "../ClientCode/Home";
+import { loadResetPasswordSuccessfulPage, loadSetNewPasswordPage } from "../ClientCode/Home";
+import { submitResetPasswordEmailDetails } from "../ClientCode/PasswordReset";
 import { httpImagesRequestURLPrefix } from "../HelperUtils/GlobalsForClient";
 import { emailImageCSS, inputTextBoxPasswordResetCSS, passwordLengthContentCSS, passwordResetDivCSS, passwordResetHeadingCSS, resendOTPSubmitButtonCSS, resetPasswordContentCSS, resetPasswordHeadingCSS, sendOTPSubmitButtonCSS } from "../StyleSheets/PasswordResetSheet";
 import { LoginModal } from "./LoginModal";
@@ -60,7 +61,7 @@ export function PasswordResetPage() {
 
         <div style={{paddingLeft : '60px', paddingBottom : '50px', paddingTop : '60px'}}>
 
-          <button type="submit" className="col-lg-10" style={sendOTPSubmitButtonCSS} id="id_sendOTP" onClick={loadEnterOTPPage}>Send OTP</button>
+          <button type="submit" className="col-lg-10" style={sendOTPSubmitButtonCSS} id="id_sendOTP" onClick={(event) => submitResetPasswordEmailDetails(event)}>Send OTP</button>
 
         </div>
 
