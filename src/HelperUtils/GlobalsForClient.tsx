@@ -35,6 +35,9 @@ export const customerObjectKeysForUpload = ["Name", "PhoneNumber", "EmailAddress
 
 export const customerObjectKeysForPasswordReset = ["EmailAddress"];
 
+export const customerObjectKeysForOTPValidation = ["EmailAddress", "currentOTP"];
+
+export const customerObjectKeysForSetNewPassword = ["EmailAddress", "Password", "PasswordReentry"];
 
 // Contact US Data
 

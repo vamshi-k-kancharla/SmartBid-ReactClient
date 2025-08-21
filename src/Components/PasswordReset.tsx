@@ -1,7 +1,7 @@
 
 
-import { loadResetPasswordSuccessfulPage, loadSetNewPasswordPage } from "../ClientCode/Home";
-import { submitResetPasswordEmailDetails } from "../ClientCode/PasswordReset";
+import { loadResetPasswordPage, loadResetPasswordSuccessfulPage, loadSetNewPasswordPage } from "../ClientCode/Home";
+import { submitResetNewPassword, submitResetPasswordEmailDetails, validateOTPResetPassword } from "../ClientCode/PasswordReset";
 import { httpImagesRequestURLPrefix } from "../HelperUtils/GlobalsForClient";
 import { emailImageCSS, inputTextBoxPasswordResetCSS, passwordLengthContentCSS, passwordResetDivCSS, passwordResetHeadingCSS, resendOTPSubmitButtonCSS, resetPasswordContentCSS, resetPasswordHeadingCSS, sendOTPSubmitButtonCSS } from "../StyleSheets/PasswordResetSheet";
 import { LoginModal } from "./LoginModal";
@@ -123,13 +123,13 @@ export function EnterOTPPage() {
 
         <div style={{paddingLeft : '60px', paddingTop : '60px'}}>
 
-          <button type="submit" className="col-lg-10" style={sendOTPSubmitButtonCSS} id="id_verifyOTP" onClick={loadSetNewPasswordPage}>Verify OTP</button>
+          <button type="submit" className="col-lg-10" style={sendOTPSubmitButtonCSS} id="id_verifyOTP" onClick={(event) => validateOTPResetPassword(event)}>Verify OTP</button>
 
         </div>
 
         <div style={{paddingLeft : '60px', paddingBottom : '50px', paddingTop : '60px'}}>
 
-          <button type="submit" className="col-lg-10" style={resendOTPSubmitButtonCSS} id="id_resendOTP" onClick={(event) => (event)}>Resend OTP</button>
+          <button type="submit" className="col-lg-10" style={resendOTPSubmitButtonCSS} id="id_resendOTP" onClick={loadResetPasswordPage}>Resend OTP</button>
 
         </div>
 
@@ -188,13 +188,13 @@ export function SetNewPasswordPage() {
 
         <div style={{paddingLeft : '60px', paddingBottom : '20px', paddingTop : '20px'}}>
 
-          <input type="text" placeholder="New Password" className="col-lg-10" style={inputTextBoxPasswordResetCSS} id="id_newPassword"/>
+          <input type="password" placeholder="New Password" className="col-lg-10" style={inputTextBoxPasswordResetCSS} id="id_newPassword"/>
 
         </div>
 
         <div style={{paddingLeft : '60px', paddingBottom : '20px', paddingTop : '40px'}}>
 
-          <input type="text" placeholder="Confirm New Password" className="col-lg-10" style={inputTextBoxPasswordResetCSS} id="id_confirmNewPassword"/>
+          <input type="password" placeholder="Confirm New Password" className="col-lg-10" style={inputTextBoxPasswordResetCSS} id="id_confirmNewPassword"/>
 
         </div>
 
@@ -206,7 +206,7 @@ export function SetNewPasswordPage() {
 
         <div style={{paddingLeft : '60px', paddingTop : '20px', paddingBottom : '50px'}}>
 
-          <button type="submit" className="col-lg-10" style={sendOTPSubmitButtonCSS} id="id_resetPassword" onClick={loadResetPasswordSuccessfulPage}>Reset Password</button>
+          <button type="submit" className="col-lg-10" style={sendOTPSubmitButtonCSS} id="id_resetPassword" onClick={(event) => submitResetNewPassword(event)}>Reset Password</button>
 
         </div>
 
