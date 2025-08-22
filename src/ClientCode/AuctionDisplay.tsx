@@ -1,7 +1,7 @@
 import { loadHomePageAuctionDetails, loadHomePageWithoutAuctionDetails } from "./Home";
 
 import { sendHttpRequestToSmartBidServerWithCallbackFunction } from "../HelperUtils/HttpRestAPIClient";
-import { currentBidDivCSS } from "../StyleSheets/AuctionDisplayStyleSheet";
+import { loadSearchFilterValuesIntoCache } from "../HelperUtils/SearchFilterHelperUtils";
 
 export function RetrieveAuctions()
 {
@@ -16,6 +16,8 @@ export function RetrieveAuctions()
 
 export function successfulAuctionDetailsResponseFunction( auctionResponseString : string)
 {
+    loadSearchFilterValuesIntoCache(auctionResponseString);
+
     loadHomePageAuctionDetails(auctionResponseString, 0);
 }
 

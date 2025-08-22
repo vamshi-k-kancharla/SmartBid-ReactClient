@@ -14,11 +14,12 @@ import { PlaceBid, retrieveCustomerRecord } from './PlaceBid';
 import { RetrieveCustomerAuctionsAndBids } from './CustomerDashboard';
 import { CustomerDashboardPage } from '../Components/CustomerDashboard';
 import { HeaderLoggedIn } from '../Components/HeaderLoggedIn';
-import { Login, loginOnLoad } from './Login';
+import { loginOnLoad } from './Login';
 import { httpImagesRequestURLPrefix } from '../HelperUtils/GlobalsForClient';
 import { AboutUSPage } from '../Components/AboutUS';
 import { ContactUSPage } from '../Components/ContactUS';
 import { EnterOTPPage, PasswordResetPage, PasswordResetSuccessfulPage, SetNewPasswordPage } from '../Components/PasswordReset';
+import { SearchFilter } from '../Components/SearchFilter';
 
 
 // Render the Home Page
@@ -45,6 +46,7 @@ export async function loadHomePage()
       { (window.localStorage.getItem("CurrentUser_LoggedIn") == 'true') ? 
         ( <HeaderLoggedIn headerName="Home" /> ) : 
         (<Header />) }
+      <SearchFilter />
       <BiddingStyle />
       <br></br><br></br>
       <Footer />
@@ -64,6 +66,7 @@ export async function loadHomePageAuctionDetails(auctionDetailsResponseString: s
       { (window.localStorage.getItem("CurrentUser_LoggedIn") == 'true') ? 
         ( <HeaderLoggedIn headerName="Home" /> ) : 
         (<Header />) }
+      <SearchFilter />
       <AuctionDisplayWidgetHomePage auctionDetailsResponse = {auctionDetailsResponseString} currentAuctionDetailsPage = {currentAuctionDetailsPage} />
       <BiddingStyle />
       <br></br><br></br>

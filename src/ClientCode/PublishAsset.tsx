@@ -45,6 +45,11 @@ export async function submitAuctionAssetDetails(event:any)
           return;
       }
 
+      // Convert City and colony to lower Case for search filter unision
+
+      auctionAssetInputObject.City = (auctionAssetInputObject.City).toLocaleLowerCase();
+      auctionAssetInputObject.Colony = (auctionAssetInputObject.Colony).toLocaleLowerCase();
+
       // Create Form Data Input Object
       
       let inputFormData = createFormInputData(auctionAssetInputObject, 
