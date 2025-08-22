@@ -22,6 +22,11 @@ export function AboutUSPage() {
   let harshaImageSource = httpImagesRequestURLPrefix + "FoundersImages/Harsha.jpg";
   let santoshImageSource = httpImagesRequestURLPrefix + "FoundersImages/Santosh.jpg";
 
+  let hariImageSource = httpImagesRequestURLPrefix + "FoundersImages/Hari.jpg";
+  let udayImageSource = httpImagesRequestURLPrefix + "FoundersImages/Uday.jpg";
+  let kishoreImageSource = httpImagesRequestURLPrefix + "FoundersImages/Kishore.jpg";
+  let sreeramImageSource = httpImagesRequestURLPrefix + "FoundersImages/Sreeram.jpg";
+
   return (
 
     <div>
@@ -74,17 +79,55 @@ export function AboutUSPage() {
 
               <div className="col-lg-3">
 
+                <img src={udayImageSource} style={founderImageCSS}></img>
+                <div style={founderNameTitleCSS}>&nbsp;UdaySimha Reddy TheepiReddy</div>
+                <div style={founderNameTitleCSS}>CoFounder, Business Development</div>
+
+              </div>
+
+              <div className="col-lg-3">
+
+                <img src={hariImageSource} style={founderImageCSS}></img>
+                <div style={founderNameTitleCSS}>&nbsp;&nbsp;Hari Krishna Kancharla</div>
+                <div style={founderNameTitleCSS}>CoFounder, Managing Director</div>
+
+              </div>
+
+              <div className="col-lg-3">
+
                 <img src={srinivasImageSource} style={founderImageCSS}></img>
                 <div style={founderNameTitleCSS}>Srinivas Reddy Repala</div>
                 <div style={founderNameTitleCSS}>&nbsp;Director, UX Design</div>
 
               </div>
 
+            </div>
+
+            <br/><br/>
+
+            <div className='row'>
+
               <div className="col-lg-3">
 
                 <img src={harshaImageSource} style={founderImageCSS}></img>
                 <div style={founderNameTitleCSS}>Harshavardhan Gajibimker</div>
                 <div style={founderNameTitleCSS}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Director, Marketing</div>
+
+              </div>
+
+              <div className="col-lg-3">
+
+                <img src={kishoreImageSource} style={founderImageCSS}></img>
+                <div style={founderNameTitleCSS}>Kishore Reddy Mudireddy</div>
+                <div style={founderNameTitleCSS}>Director, Legal Operations</div>
+
+              </div>
+
+              <div className="col-lg-3">
+
+                <img src={sreeramImageSource} style={founderImageCSS}></img>
+                <div style={founderNameTitleCSS}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sreeram Kolisetty</div>
+                <div style={founderNameTitleCSS}>Director, Strategy & Foreign Relations</div>
 
               </div>
 
