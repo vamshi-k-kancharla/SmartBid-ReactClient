@@ -81,7 +81,7 @@ export function AuctionDisplayWidgetHomePage(props: any) {
   let currentPageAuctionBase = props.currentAuctionDetailsPage * 8;
   let noOfAuctionPages = Math.floor( (totalNumberOfAuctions / 8) ) + ( (totalNumberOfAuctions % 8 == 0) ? 0 : 1 );
 
-  console.log("totalNumberOfAuctions = " + totalNumberOfAuctions + " , no of pages = " + Math.floor(totalNumberOfAuctions / 8) );
+  console.log("totalNumberOfAuctions = " + totalNumberOfAuctions + " , no of pages = " + noOfAuctionPages );
   console.log("currentAuctionDetailsPage => " + props.currentAuctionDetailsPage);
 
   changeTheActiveStatusOfPaginationList(props.currentAuctionDetailsPage, noOfAuctionPages);

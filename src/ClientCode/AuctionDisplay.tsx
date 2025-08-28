@@ -2,6 +2,7 @@ import { loadHomePageAuctionDetails, loadHomePageWithoutAuctionDetails } from ".
 
 import { sendHttpRequestToSmartBidServerWithCallbackFunction } from "../HelperUtils/HttpRestAPIClient";
 import { loadSearchFilterValuesIntoCache } from "../HelperUtils/SearchFilterHelperUtils";
+import { populateCitySelectionBox } from "./SearchFilter";
 
 export function RetrieveAuctions()
 {
@@ -17,6 +18,8 @@ export function RetrieveAuctions()
 export function successfulAuctionDetailsResponseFunction( auctionResponseString : string)
 {
     loadSearchFilterValuesIntoCache(auctionResponseString);
+
+    populateCitySelectionBox();
 
     loadHomePageAuctionDetails(auctionResponseString, 0);
 }

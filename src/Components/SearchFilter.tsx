@@ -1,3 +1,4 @@
+import { applyTheSearchFilter, populateCitySelectionBox, populateColonySelectionBox } from "../ClientCode/SearchFilter";
 import { searchButtonCSS, searchDivCSS } from "../StyleSheets/SearchFilterSheet";
 import { textInputCSS } from "../StyleSheets/SignUpStyleSheet";
 
@@ -18,7 +19,7 @@ export function SearchFilter() {
 
             <div  className="col-lg-3">
 
-              <select className="col-lg-12" style={textInputCSS} id="id_city">
+              <select className="col-lg-12" style={textInputCSS} id="id_city" onClick={populateColonySelectionBox}>
 
                 <option value = ''>Select City</option>
 
@@ -53,7 +54,7 @@ export function SearchFilter() {
                 
             <div  className="col-lg-3">
 
-              <button className="col-lg-12" style={searchButtonCSS}>Search</button>
+              <button className="col-lg-12" style={searchButtonCSS} onClick={applyTheSearchFilter}>Search</button>
 
             </div>
                 
