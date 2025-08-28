@@ -10,7 +10,7 @@ import { SignUp } from './SignUp';
 import { PublishAsset } from './PublishAsset';
 import { AuctionDisplayWidgetHomePage } from '../Components/AuctionDisplayWidget';
 import { RetrieveAuctions } from './AuctionDisplay';
-import { PlaceBid, retrieveCustomerRecord } from './PlaceBid';
+import { PlaceBid, renderCarouselAnimationOntoPlaceBid, retrieveCustomerRecord } from './PlaceBid';
 import { RetrieveCustomerAuctionsAndBids } from './CustomerDashboard';
 import { CustomerDashboardPage } from '../Components/CustomerDashboard';
 import { HeaderLoggedIn } from '../Components/HeaderLoggedIn';
@@ -159,7 +159,7 @@ export function loadPlaceBidPageAfterLogin( responseTextFromServer : string )
 
 }
 
-export function loadPlaceBidPageWithCustomerInfo(auctionDetailsResponse : string, auctionIndex : Number, customerRecord : string)
+export function loadPlaceBidPageWithCustomerInfo(auctionDetailsResponse : string, auctionIndex : number, customerRecord : string)
 {
   
   smartBidRoot.render(
@@ -171,6 +171,8 @@ export function loadPlaceBidPageWithCustomerInfo(auctionDetailsResponse : string
     </StrictMode>
 
   );
+
+  //renderCarouselAnimationOntoPlaceBid(auctionDetailsResponse, auctionIndex );
 
 }
 

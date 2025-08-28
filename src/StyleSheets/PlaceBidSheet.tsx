@@ -36,6 +36,7 @@ export const placeBidDisplayContentDivCSS =
 
   paddingLeft:'2%',
   paddingRight: '2%',
+  borderRadius: '8px'
 
 };
 

@@ -28,7 +28,7 @@ import { HeaderLoggedIn } from './HeaderLoggedIn';
 
 import { httpImagesRequestURLPrefix } from '../HelperUtils/GlobalsForClient';
 
-import { placeQuickBid } from '../ClientCode/PlaceBid';
+import { placeQuickBid, renderCarouselAnimationOntoPlaceBid } from '../ClientCode/PlaceBid';
 
 
 export function PlaceBidPage(props:any) {
@@ -79,10 +79,14 @@ export function PlaceBidPane(props:any) {
   let assetBuiltupArea = auctionDetailsArrayObject[auctionIndex].BuiltUpArea;
   let assetCurrentBidPrice = auctionDetailsArrayObject[auctionIndex].CurrentBidPrice;
   let assetId = auctionDetailsArrayObject[auctionIndex].AssetId;
-  let imageSourcePath = httpImagesRequestURLPrefix + "asset_" + assetId + "_file_0.jpg";
   let assetDescription = auctionDetailsArrayObject[auctionIndex].AssetDescription;
   let assetBiddingType = auctionDetailsArrayObject[auctionIndex].BiddingType;
   let sellerCustomerId = auctionDetailsArrayObject[auctionIndex].SellerCustomerId;
+
+  let noOfFiles = auctionDetailsArrayObject[auctionIndex].NoOfFiles;
+
+  let imageSourcePath = httpImagesRequestURLPrefix + "asset_" + assetId + "_file_0.jpg";
+  let foreverImageSourcePath = httpImagesRequestURLPrefix + "ForeverImage.jpg";
 
   let customerRecordObject = JSON.parse(props.customerRecord)
 
@@ -106,7 +110,40 @@ export function PlaceBidPane(props:any) {
 
         <div className="col-lg-8" style={placeBidDisplayContentDivCSS}> 
 
-          <img src={imageSourcePath} style={imageFileDivCSS}></img>
+          <div id="PlaceBidCarousel" className="carousel slide" data-ride="carousel" style={{borderRadius:'8px'}}>
+
+            <ol className="carousel-indicators" id="PlaceBid-Carousel-Indicator">
+
+              {(noOfFiles > 0) ? <li data-target="#PlaceBidCarousel" data-slide-to="0" className="active"/> : <div></div>}
+              {(noOfFiles > 1) ? <li data-target="#PlaceBidCarousel" data-slide-to="1"/> : <div></div>}
+              {(noOfFiles > 2) ? <li data-target="#PlaceBidCarousel" data-slide-to="2"/> : <div></div>}
+              {(noOfFiles > 3) ? <li data-target="#PlaceBidCarousel" data-slide-to="3"/> : <div></div>}
+              {(noOfFiles > 4) ? <li data-target="#PlaceBidCarousel" data-slide-to="4"/> : <div></div>}
+              {(noOfFiles > 5) ? <li data-target="#PlaceBidCarousel" data-slide-to="5"/> : <div></div>}
+              {(noOfFiles > 6) ? <li data-target="#PlaceBidCarousel" data-slide-to="6"/> : <div></div>}
+              {(noOfFiles > 7) ? <li data-target="#PlaceBidCarousel" data-slide-to="7"/> : <div></div>}
+              {(noOfFiles > 8) ? <li data-target="#PlaceBidCarousel" data-slide-to="8"/> : <div></div>}
+              {(noOfFiles > 9) ? <li data-target="#PlaceBidCarousel" data-slide-to="9"/> : <div></div>}
+
+            </ol>
+
+            <div className="carousel-inner" style={{borderRadius:'8px'}} id="PlaceBid-Carousel-Images">
+
+              <img src={foreverImageSourcePath} onLoad={() => renderCarouselAnimationOntoPlaceBid(props.auctionDetailsResponse, props.auctionIndex)}></img>
+
+            </div>
+
+            <a className="left carousel-control" href="#PlaceBidCarousel" data-slide="prev" style={{borderRadius:'8px'}}>
+              <span className="glyphicon glyphicon-chevron-left"></span>
+            </a>
+
+            <a className="right carousel-control" href="#PlaceBidCarousel" data-slide="next" style={{borderRadius:'8px'}}>
+              <span className="glyphicon glyphicon-chevron-right"></span>
+            </a>
+
+          </div>
+
+
 
           <div className = 'row'>
 
