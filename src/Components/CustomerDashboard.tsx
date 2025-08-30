@@ -53,6 +53,8 @@ export function DashboardPane(props:any) {
 
   renderMyAuctionsPane(auctionsAndBidResponse.CustomerAuctions);
 
+  let foreverImageSourcePath = httpImagesRequestURLPrefix + "ForeverImage.jpg";
+
   return (
 
     <div>
@@ -104,7 +106,7 @@ export function DashboardPane(props:any) {
 
       <div id = 'id_customer_auctions_bids_div' style={{paddingLeft : '15px'}} onLoad={() => renderMyAuctionsPane(auctionsAndBidResponse.CustomerAuctions)}>
 
-        <img src="http://127.0.0.1:8080/Smart-Bid/AssetImages/ForeverImage.jpg"></img>
+        <img src={foreverImageSourcePath}></img>
 
       </div>
 
