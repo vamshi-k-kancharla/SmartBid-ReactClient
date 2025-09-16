@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "source": "src/homePage.html",
   "scripts": {
-    "start": "parcel",
+    "start": "parcel --https --cert ./SmartBidNowCertificates/SmartBidCertificate/smartbidnow.com-certificate.crt --key ./SmartBidNowCertificates/smartbidnow.com-PrivateKey.pem",
     "build": "parcel build"
   },
   "dependencies": {

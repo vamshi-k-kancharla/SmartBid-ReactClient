@@ -1,7 +1,7 @@
 
-export const httpRequestURLPrefix = "http://127.0.0.1:8000/";
+export const httpRequestURLPrefix = "https://smartbidnow.com:8000/";
 
-export const httpImagesRequestURLPrefix = "http://127.0.0.1:8080/Smart-Bid/AssetImages/";
+export const httpImagesRequestURLPrefix = "https://smartbidnow.com:8080/Smart-Bid/AssetImages/";
 
 export const maxFilesUploadCount = 10;
 
