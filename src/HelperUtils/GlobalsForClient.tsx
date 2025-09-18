@@ -1,7 +1,9 @@
+import React from "react";
 
-export const httpRequestURLPrefix = "https://smartbidnow.com:8000/";
+export const httpRequestURLPrefix = (process.env.SMARTBID_BUILD == "DEV") ? "https://127.0.0.1:8000/" : "https://smartbidnow.com:8000/";
 
-export const httpImagesRequestURLPrefix = "https://smartbidnow.com:8080/Smart-Bid/AssetImages/";
+export const httpImagesRequestURLPrefix = (process.env.SMARTBID_BUILD == "DEV") ? "https://127.0.0.1:8080/Smart-Bid/AssetImages/" : 
+                "https://smartbidnow.com:8080/Smart-Bid/AssetImages/";
 
 export const maxFilesUploadCount = 10;
 

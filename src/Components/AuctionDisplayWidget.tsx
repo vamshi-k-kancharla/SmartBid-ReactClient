@@ -8,6 +8,7 @@ import { httpImagesRequestURLPrefix } from "../HelperUtils/GlobalsForClient";
 import { loadPlaceBidPage } from "../ClientCode/Home";
 import { changeTheActiveStatusOfPaginationList, renderPaginationListPane } from "../ClientCode/AuctionDisplay";
 
+import React from 'react';
 
 export function AuctionDisplayWidget(props: any) {
 
@@ -81,8 +82,10 @@ export function AuctionDisplayWidgetHomePage(props: any) {
   let currentPageAuctionBase = props.currentAuctionDetailsPage * 8;
   let noOfAuctionPages = Math.floor( (totalNumberOfAuctions / 8) ) + ( (totalNumberOfAuctions % 8 == 0) ? 0 : 1 );
 
-  console.log("totalNumberOfAuctions = " + totalNumberOfAuctions + " , no of pages = " + noOfAuctionPages );
+  console.log("totalNumberOfAuctions in Smart Bid = " + totalNumberOfAuctions + " , no of pages = " + noOfAuctionPages );
   console.log("currentAuctionDetailsPage => " + props.currentAuctionDetailsPage);
+  
+  console.log("Smart_Bid_Build_Environment = " + process.env.SMARTBID_BUILD);
 
   changeTheActiveStatusOfPaginationList(props.currentAuctionDetailsPage, noOfAuctionPages);
 

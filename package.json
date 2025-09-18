@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "source": "src/homePage.html",
   "scripts": {
-    "start": "parcel --https --cert ./SmartBidNowCertificates/SmartBidCertificate/smartbidnow.com-certificate.crt --key ./SmartBidNowCertificates/smartbidnow.com-PrivateKey.pem",
+    "start": "IF %SmartBid%==Dev (parcel --https --cert ./SmartBidNowCertificates/SelfSignedCert.pem --key ./SmartBidNowCertificates/SelfSignedCertKey.pem --port 443) ELSE (parcel --https --cert ./SmartBidNowCertificates/smartbidnow.com-certificate.crt --key ./SmartBidNowCertificates/smartbidnow.com-PrivateKey.pem --port 443)",
     "build": "parcel build"
   },
   "dependencies": {

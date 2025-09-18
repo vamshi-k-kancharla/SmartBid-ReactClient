@@ -172,8 +172,6 @@ export function loadPlaceBidPageWithCustomerInfo(auctionDetailsResponse : string
 
   );
 
-  //renderCarouselAnimationOntoPlaceBid(auctionDetailsResponse, auctionIndex );
-
 }
 
 // Customer Dashboard Page
