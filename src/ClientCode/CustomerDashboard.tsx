@@ -1,4 +1,4 @@
-import { sendHttpRequestToSmartBidServerWithCallbackFunction } from '../HelperUtils/HttpRestAPIClient'
+import { sendHttpRequestToSmartBidServerWithCallbackFunction, sendHttpRequestToSmartBidServerWithCallbackFunctionObject } from '../HelperUtils/HttpRestAPIClient';
 import { loadCustomerDashboardPage, loadCustomerDashboardPageWithAuctionsAndBids, loadHomePage } from './Home';
 
 // Retrieve Customer Auctions and Bids
@@ -16,7 +16,12 @@ export function RetrieveCustomerAuctionsAndBids()
 
 export function successfulBidsAndAuctionsResponseFunction( auctionsAndBidsResponseString : string)
 {
-    loadCustomerDashboardPageWithAuctionsAndBids(auctionsAndBidsResponseString);
+
+    let auctionsAndBidsResponseObject : {[index : string] : any} = {};
+
+    auctionsAndBidsResponseObject["auctionsAndBidsResponse"] = auctionsAndBidsResponseString;
+
+    RetrieveAssetAuctionResponse(auctionsAndBidsResponseObject);
 }
 
 
@@ -24,6 +29,33 @@ export function failureBidsAndAuctionsResponseFunction( auctionsAndBidsResponseS
 {
 
     alert("Couldn't retrieve the details of auctions and bids => " + auctionsAndBidsResponseString);
+    loadHomePage();
+}
+
+
+export function RetrieveAssetAuctionResponse(auctionsAndBidsResponseObject : {[index : string] : any})
+{
+
+    let retrieveAuctionsRequestUrlString = "RetrieveAuctions";
+    
+    sendHttpRequestToSmartBidServerWithCallbackFunctionObject( retrieveAuctionsRequestUrlString, successfulAuctionsResponseFunction,
+        failureAuctionsResponseFunction, "auctionsResponse", auctionsAndBidsResponseObject
+     );
+
+}
+
+export function successfulAuctionsResponseFunction( auctionsAndBidsResponseObject : {[index : string] : any} )
+{
+    loadCustomerDashboardPageWithAuctionsAndBids(auctionsAndBidsResponseObject["auctionsAndBidsResponse"], 
+        auctionsAndBidsResponseObject["auctionsResponse"]
+    );
+}
+
+
+export function failureAuctionsResponseFunction( auctionsAndBidsResponseObject : {[index : string] : any} )
+{
+
+    alert("Couldn't retrieve the details of all the auctions => ");
     loadHomePage();
 }
 

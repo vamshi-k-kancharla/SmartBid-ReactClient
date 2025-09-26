@@ -9,6 +9,7 @@ import { HeaderLoggedIn } from './HeaderLoggedIn';
 import { closeAuction } from '../ClientCode/CustomerDashboard';
 
 import { httpImagesRequestURLPrefix } from '../HelperUtils/GlobalsForClient';
+import { loadPlaceBidPage } from '../ClientCode/Home';
 
 export function CustomerDashboardPage(props:any) {
   
@@ -27,7 +28,7 @@ export function CustomerDashboardPage(props:any) {
 
         <div className='col-lg-10' style={customerDashboardPaneCSS}>
 
-          <DashboardPane auctionsAndBidsResponse = {props.auctionsAndBidsResponse} />
+          <DashboardPane auctionsAndBidsResponse = {props.auctionsAndBidsResponse} fullAuctionsResponse = {props.fullAuctionsResponse} />
 
         </div>
 
@@ -42,11 +43,42 @@ export function CustomerDashboardPage(props:any) {
   
 }
 
+export function retrieveAuctionsForCustomerBids( fullAuctionsResponse : string, currentCustomerBids : Array<{[index : string] : any}> )
+{
+
+  let fullAuctionsResponseObject = JSON.parse(fullAuctionsResponse);
+  let requiredAuctionsResponseObject : Array<{[index : string] : any}> = [];
+
+  for( let currentBid of currentCustomerBids )
+  {
+
+    let assetId = currentBid.AssetId;
+
+    for( let currentAsset of fullAuctionsResponseObject )
+    {
+
+      if( currentAsset.AssetId == assetId )
+      {
+
+        requiredAuctionsResponseObject.push(currentAsset);
+      }
+
+    }
+
+  }
+
+  return JSON.stringify(requiredAuctionsResponseObject);
+
+}
+
 export function DashboardPane(props:any) {
 
   let auctionsAndBidResponse = JSON.parse(props.auctionsAndBidsResponse);
   let customerAuctionsCount = auctionsAndBidResponse.CustomerAuctions.length;
   let customerBidsCount = auctionsAndBidResponse.CustomerBids.length;
+
+  let requiredAuctionsResponseString = retrieveAuctionsForCustomerBids( props.fullAuctionsResponse, 
+    auctionsAndBidResponse.CustomerBids );
 
   console.log("CustomerDashboard : DashboardPane => " + props.auctionsAndBidsResponse);
   console.log("CustomerDashboard : DashboardPane => customerAuctionsCount = " + customerAuctionsCount);
@@ -94,7 +126,7 @@ export function DashboardPane(props:any) {
           <ul className='nav row'>
 
             <li className='col-lg-3'><a href='#' onClick={() => renderMyAuctionsPane(auctionsAndBidResponse.CustomerAuctions)}>My Auctions</a></li>
-            <li className='col-lg-3'><a href='#' onClick={() => renderMyBidsPane(auctionsAndBidResponse.CustomerBids)}>My Bids</a></li>
+            <li className='col-lg-3'><a href='#' onClick={() => renderMyBidsPane(auctionsAndBidResponse.CustomerBids, requiredAuctionsResponseString)}>My Bids</a></li>
 
           </ul>
 
@@ -127,7 +159,9 @@ export function removeAllChildrenFromAuctionsBidsPane()
 }
 
 
-export function renderMyBidsPane(customerBidsResponse : Array<{[index : string] : any}>) {
+export function renderMyBidsPane(customerBidsResponse : Array<{[index : string] : any}>, auctionsResponseString : string) {
+
+  let auctionsResponseStringObject = JSON.parse(auctionsResponseString);
 
   // Remove all the children from Auctions&Bids Pane
 
@@ -151,7 +185,7 @@ export function renderMyBidsPane(customerBidsResponse : Array<{[index : string] 
     myAuctionsAndBidsBufferDivPane.style.height = '20px';
 
     myBidsDivElement.append(myAuctionsAndBidsBufferDivPane);
-    let myIndiBidDivElement : any = returnIndividualBidDivPane(customerBidsResponse, i);
+    let myIndiBidDivElement : any = returnIndividualBidDivPane(customerBidsResponse, i, auctionsResponseStringObject);
     myBidsDivElement?.append(myIndiBidDivElement);
   }
 
@@ -229,7 +263,9 @@ My Bids Div Pane
 ********************************************************************************************************************/
 
 
-function returnIndividualBidDivPane( bidDetailsResponse : Array<{[index : string] : any}>, bidIndex : any ) : any {
+function returnIndividualBidDivPane( bidDetailsResponse : Array<{[index : string] : any}>, bidIndex : any,
+  auctionsResponseStringArray : Array<{[index : string] : any}>
+ ) : any {
 
   console.log("assetId = " + bidDetailsResponse[bidIndex].AssetId);
   
@@ -246,6 +282,8 @@ function returnIndividualBidDivPane( bidDetailsResponse : Array<{[index : string
   let myBidsDivPane = document.createElement('div');
 
   myBidsDivPane.className = 'col-lg-12';
+
+  myBidsDivPane.onclick = (event) => loadPlaceBidPage( event, JSON.stringify(auctionsResponseStringArray), bidIndex );
 
   myBidsDivPane.style.paddingTop = '15px';
   myBidsDivPane.style.paddingBottom = '15px';
@@ -513,6 +551,8 @@ function returnIndividualAuctionDivPane( auctionDetailsResponse : Array<{[index 
   myAuctionsDivPane.style.paddingLeft = '15px';
   myAuctionsDivPane.style.border = '1px solid #C6C6C6';
   myAuctionsDivPane.style.borderRadius = '8px';
+
+  myAuctionsDivPane.onclick = (event) => loadPlaceBidPage(event, JSON.stringify(auctionDetailsResponse), auctionIndex);
 
   // Add Individual elements to auctions div pane
   // Image Element

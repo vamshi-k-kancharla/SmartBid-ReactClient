@@ -10,7 +10,7 @@ import { SignUp } from './SignUp';
 import { PublishAsset } from './PublishAsset';
 import { AuctionDisplayWidgetHomePage } from '../Components/AuctionDisplayWidget';
 import { RetrieveAuctions } from './AuctionDisplay';
-import { PlaceBid, renderCarouselAnimationOntoPlaceBid, retrieveCustomerRecord } from './PlaceBid';
+import { PlaceBid, retrieveCustomerRecord } from './PlaceBid';
 import { RetrieveCustomerAuctionsAndBids } from './CustomerDashboard';
 import { CustomerDashboardPage } from '../Components/CustomerDashboard';
 import { HeaderLoggedIn } from '../Components/HeaderLoggedIn';
@@ -190,14 +190,14 @@ export function loadCustomerDashboardPageAfterLogin()
   
 }
 
-export function loadCustomerDashboardPageWithAuctionsAndBids(auctionsAndBidsResponse : string)
+export function loadCustomerDashboardPageWithAuctionsAndBids(auctionsAndBidsResponse : string, fullAuctionsResponse : string)
 {
 
   smartBidRoot.render(
     
     <StrictMode>
 
-      <CustomerDashboardPage auctionsAndBidsResponse = {auctionsAndBidsResponse} />
+      <CustomerDashboardPage auctionsAndBidsResponse = {auctionsAndBidsResponse} fullAuctionsResponse = {fullAuctionsResponse} />
       
     </StrictMode>
 
