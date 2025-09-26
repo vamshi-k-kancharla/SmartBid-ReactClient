@@ -212,6 +212,15 @@ export const activeContentCSS =
 
 }
 
+export const closedContentCSS =
+{
+
+  ...activeContentCSS,
+  backgroundColor : 'red',
+  border : '1px solid red'
+  
+}
+
 export const basePriceContentCSS =
 {
 

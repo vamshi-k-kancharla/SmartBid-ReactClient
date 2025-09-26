@@ -22,7 +22,8 @@ import { backToDashboardButtonCSS, backToDashboardPaddingCSS, placeBidDisplayCon
   contactSellerModalLabelCSS,
   contactSellerModalDetailCSS,
   contactSellerModalBodyCSS,
-  contactSellerHeaderFooterCSS} from '../StyleSheets/PlaceBidSheet';
+  contactSellerHeaderFooterCSS,
+  closedContentCSS} from '../StyleSheets/PlaceBidSheet';
 
 import { HeaderLoggedIn } from './HeaderLoggedIn';
 
@@ -82,6 +83,7 @@ export function PlaceBidPane(props:any) {
   let assetDescription = auctionDetailsArrayObject[auctionIndex].AssetDescription;
   let assetBiddingType = auctionDetailsArrayObject[auctionIndex].BiddingType;
   let sellerCustomerId = auctionDetailsArrayObject[auctionIndex].SellerCustomerId;
+  let assetStatus = auctionDetailsArrayObject[auctionIndex].Status;
 
   let noOfFiles = auctionDetailsArrayObject[auctionIndex].NoOfFiles;
 
@@ -95,6 +97,7 @@ export function PlaceBidPane(props:any) {
   let sellerMobileNumber = customerRecordObject[0].PhoneNumber;
 
   console.log("Image Source Path = " + imageSourcePath);
+  console.log("Asset Status = " + assetStatus);
   
   return (
 
@@ -182,15 +185,16 @@ export function PlaceBidPane(props:any) {
           
           <div style={{paddingTop:'30px'}}>
 
-            <BiddingStatusPane assetAuctionPrice = {assetAuctionPrice} currentBidPrice = {assetCurrentBidPrice} assetBiddingType = {assetBiddingType} />
+            <BiddingStatusPane assetAuctionPrice = {assetAuctionPrice} currentBidPrice = {assetCurrentBidPrice} assetBiddingType = {assetBiddingType} assetStatus = {assetStatus}/>
 
           </div>
 
           <div style={{paddingTop:'30px'}}>
 
-            <QuickBidPane assetAuctionPrice = {assetAuctionPrice} currentBidPrice = {assetCurrentBidPrice} 
+            { (String(assetStatus).toLocaleLowerCase() == "open" ) ? 
+              <QuickBidPane assetAuctionPrice = {assetAuctionPrice} currentBidPrice = {assetCurrentBidPrice} 
               assetId = {assetId} assetBiddingType = {assetBiddingType} sellerCustomerId = {sellerCustomerId} 
-              biddingType = {assetBiddingType} />
+              biddingType = {assetBiddingType} /> : <div></div>}
 
           </div>
 
@@ -309,7 +313,9 @@ export function BiddingStatusPane(props : any) {
       <div style={{paddingLeft:'20px'}} className='row'>
         
         <div className='col-lg-8' style={biddingStatusContentCSS}>Bidding Status</div>
-        <div className='col-lg-3' style={activeContentCSS}>Active</div>
+        { ( String(props.assetStatus).toLocaleLowerCase() == "open" ) ?
+         <div className='col-lg-3' style={activeContentCSS}>Active</div> :
+         <div className='col-lg-3' style={closedContentCSS}>Closed</div> }
 
       </div>
 
