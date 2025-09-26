@@ -46,7 +46,8 @@ export function CustomerDashboardPage(props:any) {
 export function retrieveAuctionsForCustomerBids( fullAuctionsResponse : string, currentCustomerBids : Array<{[index : string] : any}> )
 {
 
-  let fullAuctionsResponseObject = JSON.parse(fullAuctionsResponse);
+  let fullAuctionsResponseObject = (fullAuctionsResponse == null || fullAuctionsResponse == undefined) ? [] : 
+    JSON.parse(fullAuctionsResponse);
   let requiredAuctionsResponseObject : Array<{[index : string] : any}> = [];
 
   for( let currentBid of currentCustomerBids )
@@ -73,7 +74,8 @@ export function retrieveAuctionsForCustomerBids( fullAuctionsResponse : string, 
 
 export function DashboardPane(props:any) {
 
-  let auctionsAndBidResponse = JSON.parse(props.auctionsAndBidsResponse);
+  let auctionsAndBidResponse = (props.auctionsAndBidsResponse == null || props.auctionsAndBidsResponse == undefined) ? {} :
+    JSON.parse(props.auctionsAndBidsResponse);
   let customerAuctionsCount = auctionsAndBidResponse.CustomerAuctions.length;
   let customerBidsCount = auctionsAndBidResponse.CustomerBids.length;
 
@@ -161,7 +163,8 @@ export function removeAllChildrenFromAuctionsBidsPane()
 
 export function renderMyBidsPane(customerBidsResponse : Array<{[index : string] : any}>, auctionsResponseString : string) {
 
-  let auctionsResponseStringObject = JSON.parse(auctionsResponseString);
+  let auctionsResponseStringObject = (auctionsResponseString == null || auctionsResponseString == undefined) ? [] :
+    JSON.parse(auctionsResponseString);
 
   // Remove all the children from Auctions&Bids Pane
 
