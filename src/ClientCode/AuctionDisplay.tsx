@@ -15,13 +15,48 @@ export function RetrieveAuctions()
 
 }
 
+export function filterOutSellerCustomerId(auctionResponseString : string) : string
+{
+
+    let currentSellerCustomerId = window.localStorage.getItem("CurrentUser_CustomerId");
+
+    console.log("filterOutSellerCustomerId : currentSellerCustomerId = " + currentSellerCustomerId);
+
+    if( currentSellerCustomerId == null || currentSellerCustomerId == undefined || currentSellerCustomerId == "" )
+    {
+      return auctionResponseString;
+    }
+
+    let filteredAuctionResponseObject : Array<{[index: string] : any }>= [];
+
+    let auctionResponseObjectArray = JSON.parse(auctionResponseString);
+
+    for( let currentAuctionObject of auctionResponseObjectArray )
+    {
+
+      console.log("filterOutSellerCustomerId : SellerCustomerId = " + String(currentAuctionObject["SellerCustomerId"]) );
+
+      if( String(currentAuctionObject["SellerCustomerId"]) != String(currentSellerCustomerId) )
+      {
+        filteredAuctionResponseObject.push(currentAuctionObject);
+      }
+    }
+
+    return JSON.stringify(filteredAuctionResponseObject);
+
+}
+
 export function successfulAuctionDetailsResponseFunction( auctionResponseString : string)
 {
     loadSearchFilterValuesIntoCache(auctionResponseString);
 
     populateCitySelectionBox();
 
-    loadHomePageAuctionDetails(auctionResponseString, 0);
+    console.log("successfulAuctionDetailsResponseFunction : Filtering the auction response string");
+
+    let filteredAuctionResponseString : string = filterOutSellerCustomerId(auctionResponseString);
+
+    loadHomePageAuctionDetails(filteredAuctionResponseString, 0);
 }
 
 
