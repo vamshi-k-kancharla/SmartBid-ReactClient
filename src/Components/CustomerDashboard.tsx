@@ -278,6 +278,7 @@ function returnIndividualBidDivPane( bidDetailsResponse : Array<{[index : string
   let assetId = bidDetailsResponse[bidIndex].AssetId;
   let imageSourcePath = httpImagesRequestURLPrefix + "asset_" + assetId + "_file_0.jpg";
   let assetStatus = bidDetailsResponse[bidIndex].Status;
+  let assetBiddingType = bidDetailsResponse[bidIndex].BiddingType;
 
 
   console.log("Image Source Path = " + imageSourcePath);
@@ -303,7 +304,9 @@ function returnIndividualBidDivPane( bidDetailsResponse : Array<{[index : string
   // Bid Content Element
 
   let bidContent = assetType + " in " + assetColony;
-  let bidSubContent = "Current Bid : " + assetCurrentBidPrice;
+  let bidSubContent = "Current Bid : " +  String( ( String(assetBiddingType).toLocaleLowerCase() == "open" ) ? assetCurrentBidPrice : "*******" );
+
+  console.log("returnIndividualBidDivPane : bidSubContent => " + bidSubContent);
 
   let bidContentDivPane = returnMyBidsContentDivPane(bidContent, bidSubContent);
 

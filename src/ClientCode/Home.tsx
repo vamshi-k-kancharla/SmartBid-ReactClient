@@ -20,6 +20,7 @@ import { AboutUSPage } from '../Components/AboutUS';
 import { ContactUSPage } from '../Components/ContactUS';
 import { EnterOTPPage, PasswordResetPage, PasswordResetSuccessfulPage, SetNewPasswordPage } from '../Components/PasswordReset';
 import { SearchFilter } from '../Components/SearchFilter';
+import { TermsAndConditionsPage } from '../Components/TermsAndConditions';
 
 
 // Render the Home Page
@@ -219,6 +220,27 @@ export async function loadAboutUSPage()
         ( <HeaderLoggedIn headerName="About US" /> ) : 
         (<Header />) }
       <AboutUSPage />
+      <br></br><br></br>
+      <Footer />
+      
+    </StrictMode>
+
+  );
+}
+
+// Terms & Conditions Page
+
+export async function loadTermsAndConditionsPage()
+{
+
+  smartBidRoot.render(
+    
+    <StrictMode>
+
+      { (window.localStorage.getItem("CurrentUser_LoggedIn") == 'true') ? 
+        ( <HeaderLoggedIn headerName="Terms & Conditions" /> ) : 
+        (<Header />) }
+      <TermsAndConditionsPage />
       <br></br><br></br>
       <Footer />
       
